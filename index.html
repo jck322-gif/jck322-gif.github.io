@@ -1685,9 +1685,16 @@ renderQuestionView();
   if(!$badge || !$today || !$total) return;
 
   function pad(n){ return n < 10 ? "0"+n : ""+n; }
-  function todayStr(){
-    var d = new Date();
+  function dateStr(d){
     return d.getFullYear() + "-" + pad(d.getMonth()+1) + "-" + pad(d.getDate());
+  }
+  function dateStrUTC(d){
+    return d.getUTCFullYear() + "-" + pad(d.getUTCMonth()+1) + "-" + pad(d.getUTCDate());
+  }
+  function toNum(v){
+    if(v == null) return null;
+    var n = parseInt(String(v).replace(/,/g, ""), 10);
+    return isNaN(n) ? null : n;
   }
   function fetchCount(url, cb){
     fetch(url).then(function(res){
@@ -1699,14 +1706,31 @@ renderQuestionView();
   }
 
   var base = "https://" + GC_CODE + ".goatcounter.com/counter/TOTAL.json";
-  var t = todayStr();
+  var now = new Date();
+  var tLocal = dateStr(now);
+  var tUTC = dateStrUTC(now);
 
   fetchCount(base, function(v){
     if(v){ $total.textContent = v; }
     else{ $badge.style.display = "none"; }
   });
-  fetchCount(base + "?start=" + encodeURIComponent(t) + "&end=" + encodeURIComponent(t), function(v){
-    if(v != null){ $today.textContent = v; }
+
+  // The account's report timezone may not match the visitor's local timezone,
+  // so a single-day filter can land one calendar day off. Try both the
+  // visitor's local date and the UTC date, and keep whichever actually has data.
+  fetchCount(base + "?start=" + encodeURIComponent(tLocal) + "&end=" + encodeURIComponent(tLocal), function(vLocal){
+    if(tUTC === tLocal){
+      if(vLocal != null){ $today.textContent = vLocal; }
+      return;
+    }
+    fetchCount(base + "?start=" + encodeURIComponent(tUTC) + "&end=" + encodeURIComponent(tUTC), function(vUTC){
+      var nLocal = toNum(vLocal), nUTC = toNum(vUTC);
+      var best = null;
+      if(nLocal != null && nUTC != null) best = Math.max(nLocal, nUTC);
+      else if(nLocal != null) best = nLocal;
+      else if(nUTC != null) best = nUTC;
+      if(best != null){ $today.textContent = best; }
+    });
   });
 })();
 </script>
