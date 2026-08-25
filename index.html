@@ -1,0 +1,1279 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>필답형 훈련소 | 산업안전기사 실기 필답형 연습</title>
+<meta name="description" content="산업안전기사 실기 필답형 연습문제 46선. 서술형 답안을 자동 채점하고 모범답안과 상세해설을 제공하는 무료 연습 도구입니다.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A6%BA%3C/text%3E%3C/svg%3E">
+
+<!--
+  ============================================================
+  Google AdSense 연동 안내 (심사 승인 후 아래 두 곳을 채우세요)
+  ============================================================
+  1) 애드센스 심사용/게재용 스크립트를 아래처럼 head 안에 추가하세요.
+     ca-pub-XXXXXXXXXXXXXXXX 부분을 애드센스에서 발급받은
+     본인의 게시자 ID로 바꾼 뒤, 이 안내 블록 전체를 지우고
+     스크립트 태그만 남겨두면 됩니다.
+
+  스크립트 예시(그대로 복사해서 쓰고 ID만 교체):
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+  2) 광고가 실제로 보이게 하려면 본문의 광고 삽입 위치 안내 부분도
+     함께 채워야 합니다. (body 쪽 안내 참고)
+  ============================================================
+-->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@500;700;800;900&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+  :root{
+    --bg:#EEEFE8;
+    --surface:#FFFFFF;
+    --surface-2:#F4F5EE;
+    --ink:#1A1E1B;
+    --ink-soft:#565C50;
+    --ink-faint:#8B9184;
+    --border:#D9DBCC;
+    --accent:#F2B705;
+    --accent-ink:#241A00;
+    --info:#1D4E89;
+    --info-soft:#E8EFF7;
+    --success:#2E7D46;
+    --success-soft:#E7F3EA;
+    --danger:#B3261E;
+    --danger-soft:#FBEAE8;
+    --stripe-a: rgba(26,30,27,0.9);
+    --stripe-b: var(--accent);
+    --shadow: 0 1px 2px rgba(20,23,17,0.06), 0 8px 24px -12px rgba(20,23,17,0.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#14171B;
+      --surface:#1C2126;
+      --surface-2:#20262C;
+      --ink:#E9EAE4;
+      --ink-soft:#ADB3A6;
+      --ink-faint:#767D71;
+      --border:#2E353C;
+      --accent:#F2B705;
+      --accent-ink:#241A00;
+      --info:#8FBBEA;
+      --info-soft:#1C2734;
+      --success:#63BE85;
+      --success-soft:#17271C;
+      --danger:#E88079;
+      --danger-soft:#301A18;
+      --stripe-a: rgba(233,234,228,0.85);
+      --stripe-b: var(--accent);
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 28px -12px rgba(0,0,0,0.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#14171B;
+    --surface:#1C2126;
+    --surface-2:#20262C;
+    --ink:#E9EAE4;
+    --ink-soft:#ADB3A6;
+    --ink-faint:#767D71;
+    --border:#2E353C;
+    --accent:#F2B705;
+    --accent-ink:#241A00;
+    --info:#8FBBEA;
+    --info-soft:#1C2734;
+    --success:#63BE85;
+    --success-soft:#17271C;
+    --danger:#E88079;
+    --danger-soft:#301A18;
+    --stripe-a: rgba(233,234,228,0.85);
+    --stripe-b: var(--accent);
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 28px -12px rgba(0,0,0,0.6);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans KR', 'Noto Sans KR', system-ui, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background: var(--accent); color: var(--accent-ink); }
+
+  .wrap{
+    max-width:840px;
+    margin:0 auto;
+    padding:36px 20px 80px;
+  }
+
+  /* ---------- header ---------- */
+  header{ margin-bottom:28px; }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    font-weight:600;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    background:var(--accent);
+    color:var(--accent-ink);
+    padding:5px 10px 5px 8px;
+    border-radius:3px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent-ink);display:inline-block;}
+  h1{
+    font-family:'Gothic A1', sans-serif;
+    font-weight:900;
+    font-size:clamp(28px,5vw,38px);
+    letter-spacing:-0.01em;
+    margin:14px 0 8px;
+    text-wrap:balance;
+  }
+  header p.sub{
+    margin:0;
+    color:var(--ink-soft);
+    font-size:15px;
+    max-width:64ch;
+  }
+  .disclaimer{
+    margin-top:14px;
+    font-size:12.5px;
+    color:var(--ink-faint);
+    border-left:3px solid var(--border);
+    padding:6px 0 6px 12px;
+    max-width:64ch;
+  }
+
+  /* ---------- stats ---------- */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin:24px 0;
+  }
+  .stat-tile{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:14px 16px;
+    box-shadow:var(--shadow);
+  }
+  .stat-tile .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-variant-numeric:tabular-nums;
+    font-size:24px;
+    font-weight:600;
+    line-height:1.1;
+  }
+  .stat-tile .label{
+    margin-top:4px;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- controls ---------- */
+  .controls{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:center;
+    margin-bottom:14px;
+  }
+  .chip{
+    font-family:'IBM Plex Sans KR', sans-serif;
+    font-size:13px;
+    font-weight:500;
+    padding:7px 13px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background:var(--surface);
+    color:var(--ink-soft);
+    cursor:pointer;
+    transition:background .12s, color .12s, border-color .12s;
+    white-space:nowrap;
+  }
+  .chip:hover{ border-color:var(--ink-faint); }
+  .chip.active{
+    background:var(--ink);
+    color:var(--bg);
+    border-color:var(--ink);
+  }
+  .toolbar-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin:6px 0 22px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--border);
+  }
+  .toggle-group{ display:flex; gap:6px; }
+  .ghost-btn{
+    background:transparent;
+    border:1px solid var(--border);
+    color:var(--ink-soft);
+    font-size:12.5px;
+    padding:6px 11px;
+    border-radius:6px;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  .ghost-btn:hover{ color:var(--ink); border-color:var(--ink-faint); }
+
+  /* ---------- question card ---------- */
+  .qcard{
+    position:relative;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .stripe{
+    height:7px;
+    width:100%;
+    background:repeating-linear-gradient(
+      -45deg,
+      var(--stripe-a) 0 10px,
+      var(--stripe-b) 10px 20px
+    );
+  }
+  .qcard-body{ padding:26px 26px 24px; }
+  .qmeta{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:14px;
+  }
+  .tag{
+    font-size:11.5px;
+    font-weight:600;
+    padding:4px 9px;
+    border-radius:5px;
+    letter-spacing:.02em;
+  }
+  .tag.subject{ background:var(--info-soft); color:var(--info); }
+  .tag.progress{
+    font-family:'IBM Plex Mono', monospace;
+    background:var(--surface-2);
+    color:var(--ink-soft);
+    border:1px solid var(--border);
+  }
+  .tag.points{ background:var(--surface-2); color:var(--ink-faint); border:1px solid var(--border); }
+  .qtext{
+    font-size:18px;
+    font-weight:600;
+    line-height:1.55;
+    text-wrap:balance;
+    margin-bottom:18px;
+  }
+  textarea{
+    width:100%;
+    min-height:132px;
+    resize:vertical;
+    font-family:'IBM Plex Sans KR', sans-serif;
+    font-size:14.5px;
+    line-height:1.9;
+    color:var(--ink);
+    background:
+      repeating-linear-gradient(var(--surface-2) 0px, var(--surface-2) 1px, transparent 1px, transparent 34px),
+      var(--surface);
+    background-position: 0 30px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:10px 12px;
+    outline:none;
+  }
+  textarea:focus{ border-color:var(--info); }
+  textarea::placeholder{ color:var(--ink-faint); }
+
+  .actions{
+    display:flex;
+    gap:10px;
+    margin-top:14px;
+    flex-wrap:wrap;
+  }
+  button.primary{
+    font-family:'Gothic A1', sans-serif;
+    font-weight:800;
+    font-size:14.5px;
+    background:var(--accent);
+    color:var(--accent-ink);
+    border:none;
+    padding:11px 20px;
+    border-radius:7px;
+    cursor:pointer;
+  }
+  button.primary:hover{ filter:brightness(1.04); }
+  button.primary:disabled{ opacity:.45; cursor:default; }
+  button.secondary{
+    font-family:'Gothic A1', sans-serif;
+    font-weight:700;
+    font-size:14.5px;
+    background:var(--ink);
+    color:var(--bg);
+    border:none;
+    padding:11px 20px;
+    border-radius:7px;
+    cursor:pointer;
+  }
+  button.text-btn{
+    background:none;
+    border:none;
+    color:var(--ink-soft);
+    text-decoration:underline;
+    text-underline-offset:3px;
+    font-size:13.5px;
+    cursor:pointer;
+    font-family:inherit;
+    padding:11px 4px;
+  }
+  button.text-btn:hover{ color:var(--ink); }
+
+  /* ---------- result ---------- */
+  .result{
+    margin-top:22px;
+    padding-top:20px;
+    border-top:1px dashed var(--border);
+  }
+  .score-row{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:16px;
+  }
+  .score-badge{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:22px;
+    font-weight:600;
+    font-variant-numeric:tabular-nums;
+    padding:6px 14px;
+    border-radius:8px;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+  }
+  .score-badge.good{ background:var(--success-soft); color:var(--success); border-color:transparent; }
+  .score-badge.mid{ background:#FBF3D9; color:#8A6200; border-color:transparent; }
+  .score-badge.low{ background:var(--danger-soft); color:var(--danger); border-color:transparent; }
+  .score-note{ font-size:13px; color:var(--ink-soft); }
+
+  .kp-grid{
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+    margin-bottom:18px;
+  }
+  .kp{
+    display:flex;
+    gap:9px;
+    align-items:flex-start;
+    font-size:13.5px;
+    padding:7px 10px;
+    border-radius:6px;
+    background:var(--surface-2);
+  }
+  .kp .mark{ font-weight:700; flex-shrink:0; width:16px; text-align:center; }
+  .kp.hit .mark{ color:var(--success); }
+  .kp.miss .mark{ color:var(--danger); }
+  .kp.miss{ color:var(--ink-soft); }
+
+  .block-title{
+    font-family:'Gothic A1', sans-serif;
+    font-weight:800;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin:0 0 8px;
+  }
+  .answer-box{
+    background:var(--info-soft);
+    border:1px solid transparent;
+    border-radius:8px;
+    padding:14px 16px;
+    font-size:14.5px;
+    line-height:1.75;
+    margin-bottom:16px;
+    color:var(--ink);
+  }
+  .explain-box{
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:14px 16px;
+    font-size:14px;
+    line-height:1.8;
+    color:var(--ink-soft);
+  }
+  .explain-box b{ color:var(--ink); }
+
+  .next-row{ margin-top:20px; display:flex; justify-content:flex-end; }
+
+  /* ---------- wrong-note list ---------- */
+  .wn-list{ display:flex; flex-direction:column; gap:8px; }
+  .wn-item{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:8px;
+    padding:12px 14px;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+  }
+  .wn-item:hover{ border-color:var(--ink-faint); }
+  .wn-item .wn-q{ font-size:13.5px; }
+  .wn-item .wn-score{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    flex-shrink:0;
+    color:var(--ink-faint);
+  }
+  .empty{
+    color:var(--ink-faint);
+    font-size:14px;
+    padding:30px 10px;
+    text-align:center;
+  }
+
+  footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1px solid var(--border);
+    font-size:12px;
+    color:var(--ink-faint);
+    line-height:1.7;
+  }
+
+  @media (max-width:520px){
+    .stats{ grid-template-columns:repeat(3,1fr); gap:8px; }
+    .stat-tile{ padding:10px 10px; }
+    .stat-tile .num{ font-size:19px; }
+    .qcard-body{ padding:20px 18px; }
+  }
+
+  @media (prefers-reduced-motion:no-preference){
+    .qcard{ transition:opacity .15s ease; }
+  }
+</style>
+
+</head>
+<body>
+<!-- ====== 광고 삽입 위치 1 (헤더 아래, 문제 목록 위) ======
+     애드센스 승인 후 여기에 광고 유닛 코드(<ins class="adsbygoogle">...)를 붙여넣으세요.
+     예시:
+     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+          data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+     ================================================================== -->
+
+<div class="wrap">
+
+  <header>
+    <span class="eyebrow"><span class="dot"></span>산업안전기사 실기 · 필답형</span>
+    <h1>필답형 훈련소</h1>
+    <p class="sub">서술형 문제를 풀고 제출하면 핵심 키워드 채점과 모범답안, 상세 해설까지 바로 확인할 수 있는 연습 도구입니다.</p>
+    <p class="disclaimer">이 문제은행은 특정 회차의 실제 기출 원문을 그대로 복제한 것이 아니라, 산업안전보건법령·KOSHA 기준과 매년 반복 출제되는 대표 유형을 바탕으로 재구성한 연습문제입니다. 채점은 핵심 키워드·수치 일치 여부를 확인하는 자동 채점이며, 표현이 달라도 의미가 통하는지 애매한 경우엔 직접 대화창에 답안을 붙여넣어 자유롭게 피드백을 받아보세요.</p>
+  </header>
+
+  <section class="stats">
+    <div class="stat-tile"><div class="num" id="statSolved">0</div><div class="label">누적 풀이 수</div></div>
+    <div class="stat-tile"><div class="num" id="statAvg">–</div><div class="label">평균 점수</div></div>
+    <div class="stat-tile"><div class="num" id="statWrong">0</div><div class="label">오답노트</div></div>
+  </section>
+
+  <div class="controls" id="subjectChips"></div>
+
+  <div class="toolbar-row">
+    <div class="toggle-group" id="modeToggle"></div>
+    <button class="ghost-btn" id="resetStatsBtn">기록 초기화</button>
+  </div>
+
+  <section id="quizArea"></section>
+
+  <footer>
+    총 46문항 · 안전관리론 / 인간공학·시스템안전 / 기계안전 / 전기안전 / 화공안전 / 건설안전 6개 영역 · 진행 기록은 이 브라우저에만 저장됩니다(다른 기기·브라우저와 공유되지 않음).<br>
+    실기 시험은 필답형(55점·90분)과 작업형(45점·60분)의 합산 60점 이상이 합격 기준이며, 이 도구는 필답형 서술 훈련에 집중되어 있습니다.
+  </footer>
+
+</div>
+
+<script>
+(function(){
+
+/* ============================= 문제 은행 ============================= */
+var QUESTIONS = [
+
+/* ---------- 안전관리론 SM ---------- */
+{id:"SM01", subject:"안전관리론", points:"4점", q:"하인리히의 재해구성비율(1:29:300)이 의미하는 바를 설명하고, 재해예방의 4원칙을 쓰시오.",
+ answer:"1건의 중상해 사고가 발생하기까지 그 배후에는 29건의 경상해 사고와 300건의 무상해 사고(아차사고)가 존재한다는 통계적 법칙이다. 재해예방 4원칙은 손실우연의 원칙, 원인계기(원인연계)의 원칙, 예방가능의 원칙, 대책선정의 원칙이다.",
+ explain:"하인리히는 미국의 손해보험회사 재해 통계 분석을 통해 큰 재해 1건 뒤에는 반드시 다수의 경미한 재해와 무수한 징후가 선행한다는 사실을 밝혔습니다. 이는 <b>사소한 징후 단계에서 조치하면 대형 재해를 막을 수 있다</b>는 안전관리의 핵심 논리로 이어집니다. 4원칙 중 '손실우연의 원칙'은 재해로 인한 손실의 크기는 우연에 좌우되므로 손실 크기가 아니라 사고 발생 자체를 관리해야 한다는 뜻이고, '원인계기의 원칙'은 재해에는 반드시 원인이 있다는 뜻입니다.",
+ keyPoints:[
+   {label:"1:29:300 비율 언급", weight:2, any:["1:29:300","1대29대300","129300"]},
+   {label:"손실우연의 원칙", weight:1, any:["손실우연"]},
+   {label:"원인계기(원인연계)의 원칙", weight:1, any:["원인계기","원인연계"]},
+   {label:"예방가능의 원칙", weight:1, any:["예방가능"]},
+   {label:"대책선정의 원칙", weight:1, any:["대책선정"]}
+ ]},
+
+{id:"SM02", subject:"안전관리론", points:"4점", q:"버드(Bird)의 신도미노 이론 5단계를 순서대로 쓰시오.",
+ answer:"① 관리(통제)의 부족 → ② 기본원인(개인적 요인·작업상 요인) → ③ 직접원인(불안전한 행동·불안전한 상태) → ④ 사고(접촉) → ⑤ 상해(손실)",
+ explain:"하인리히의 도미노 이론을 발전시킨 버드의 이론은 재해의 근본 원인을 '관리의 부족'에서 찾는다는 점이 특징입니다. 즉 관리자가 안전관리 활동을 제대로 하지 못한 것이 최초의 원인이 되어, 기본원인(4M적 요인)과 직접원인(불안전한 행동·상태)을 거쳐 사고와 상해로 이어진다고 봅니다. 실기에서는 5단계의 순서와 명칭을 정확히 쓰는 것이 핵심입니다.",
+ keyPoints:[
+   {label:"① 관리(통제)의 부족", weight:1, any:["관리부족","관리의부족","통제부족","통제의부족"]},
+   {label:"② 기본원인", weight:1, any:["기본원인"]},
+   {label:"③ 직접원인(불안전한 행동·상태)", weight:1, any:["직접원인","불안전한행동","불안전한상태"]},
+   {label:"④ 사고(접촉)", weight:1, any:["사고","접촉"]},
+   {label:"⑤ 상해(손실)", weight:1, any:["상해","손실"]}
+ ]},
+
+{id:"SM03", subject:"안전관리론", points:"4점", q:"재해조사 시 활용하는 4M 분석기법의 4가지 요소를 쓰고, 각각을 한 문장으로 설명하시오.",
+ answer:"Man(인적요인) - 심리적·생리적 원인이나 인간관계 등 사람으로 인한 요인, Machine(설비요인) - 기계·설비의 설계상 결함이나 방호장치 미비 등 물적 요인, Media(작업정보·방법·환경요인) - 작업방법, 작업정보, 작업환경 등에 관한 요인, Management(관리적요인) - 안전관리조직, 규정, 교육훈련 등 관리상의 요인.",
+ explain:"4M 분석은 재해의 원인을 사람(Man)·기계설비(Machine)·작업방법 및 환경(Media)·관리(Management)의 네 측면에서 빠짐없이 점검하도록 돕는 재해조사·위험성평가의 기본 틀입니다. 실기에서는 각 요소의 영문 명칭과 한글 의미를 함께 요구하는 경우가 많으므로 짝을 지어 암기해두는 것이 좋습니다.",
+ keyPoints:[
+   {label:"Man - 인적요인", weight:1, any:["man"]},
+   {label:"Machine - 설비요인", weight:1, any:["machine"]},
+   {label:"Media - 작업방법·환경요인", weight:1, any:["media"]},
+   {label:"Management - 관리적요인", weight:1, any:["management"]}
+ ]},
+
+{id:"SM04", subject:"안전관리론", points:"6점", q:"어느 사업장에서 1년간 재해건수 6건, 근로손실일수 120일이 발생하였고 연근로시간수가 1,200,000시간이었다. 도수율과 강도율의 계산식을 쓰고 각각의 값을 구하시오.",
+ answer:"도수율 = (재해건수 ÷ 연근로시간수) × 1,000,000 = (6 ÷ 1,200,000) × 1,000,000 = 5. 강도율 = (근로손실일수 ÷ 연근로시간수) × 1,000 = (120 ÷ 1,200,000) × 1,000 = 0.1",
+ explain:"도수율(빈도율)은 연근로시간 100만 시간당 재해 발생 건수를, 강도율은 연근로시간 1,000시간당 근로손실일수를 나타내는 대표적인 재해 통계 지표입니다. 두 식 모두 분모가 '연근로시간수'라는 점이 같고, 분자와 곱하는 배수(100만/1,000)만 다르다는 점을 기억하면 헷갈리지 않습니다.",
+ keyPoints:[
+   {label:"도수율 공식 제시", weight:1, any:["재해건수","1000000","100만"]},
+   {label:"강도율 공식 제시", weight:1, any:["근로손실일수"]},
+   {label:"도수율 값 = 5", weight:2, numeric:{value:5, tol:0.05}},
+   {label:"강도율 값 = 0.1", weight:2, numeric:{value:0.1, tol:0.01}}
+ ]},
+
+{id:"SM05", subject:"안전관리론", points:"3점", q:"연천인율의 계산식을 쓰고, 도수율과의 관계식(근사식)을 쓰시오.",
+ answer:"연천인율 = (연간재해자수 ÷ 연평균근로자수) × 1,000. 도수율과의 관계식은 연천인율 ≒ 도수율 × 2.4 이다.",
+ explain:"연천인율은 근로자 1,000명당 1년간 발생한 재해자수를 나타내는 지표로, 재해건수 기준인 도수율과 개념이 유사하지만 산정 기준(근로시간 vs 근로자수)이 달라 상호 환산 시 2.4라는 근사 배수를 사용합니다. 이 배수는 연간 근로시간을 2,400시간(1일 8시간×연간 300일 근무 가정)으로 본 데서 유래합니다.",
+ keyPoints:[
+   {label:"연천인율 계산식", weight:2, any:["연간재해자수","1000"]},
+   {label:"도수율×2.4 관계식", weight:2, numeric:{value:2.4, tol:0.05}}
+ ]},
+
+{id:"SM06", subject:"안전관리론", points:"3점", q:"안전보건관리체제에서 안전보건관리책임자, 관리감독자, 안전관리자의 역할을 각각 한 문장으로 구분하여 설명하시오.",
+ answer:"안전보건관리책임자는 해당 사업장의 안전보건에 관한 업무를 총괄하여 관리하는 사업주 또는 사업을 대표하는 자이다. 관리감독자는 작업현장에서 소속 직원을 직접 지휘·감독하는 부서장 등으로서 해당 작업의 안전·보건에 관한 업무를 수행한다. 안전관리자는 안전에 관한 기술적 사항에 대해 안전보건관리책임자를 보좌하고 관리감독자에게 지도·조언하는 전문인력이다.",
+ explain:"세 직책의 차이를 '총괄 관리(책임자) - 현장 지휘(관리감독자) - 기술적 보좌(안전관리자)'라는 축으로 구분해서 암기하면 실기 서술형에서 혼동을 줄일 수 있습니다. 특히 안전관리자는 스스로 지시·명령하는 자리가 아니라 '보좌·조언'하는 역할이라는 점이 자주 출제 포인트가 됩니다.",
+ keyPoints:[
+   {label:"안전보건관리책임자 - 총괄관리", weight:1, any:["총괄"]},
+   {label:"관리감독자 - 현장 지휘·감독", weight:1, any:["지휘","감독"]},
+   {label:"안전관리자 - 보좌·지도조언(기술적 사항)", weight:1, any:["보좌","지도","조언"]}
+ ]},
+
+{id:"SM07", subject:"안전관리론", points:"4점", q:"안전보건표지의 종류 4가지를 쓰고, 각각의 대표적인 색채(바탕색 또는 기본모형색)를 예를 들어 설명하시오.",
+ answer:"금지표지 - 흰색 바탕에 빨간색 원형 및 사선(예: 출입금지, 보행금지). 경고표지 - 노란색 바탕에 검은색 삼각형(예: 인화성물질경고). 지시표지 - 파란색 원형 바탕에 흰색 그림(예: 보안경 착용). 안내표지 - 녹색 바탕 또는 흰색 바탕에 녹색 사각형·원형(예: 비상구, 응급구호표지).",
+ explain:"안전보건표지의 색채는 국제적으로 통용되는 안전색채 규약과 일치합니다. 빨강=금지/정지, 노랑=주의/경고, 파랑=지시/의무, 녹색=안내/안전상태 라는 색채 심리를 함께 기억하면 실무 현장에서도 바로 응용할 수 있습니다.",
+ keyPoints:[
+   {label:"금지표지 - 빨간색", weight:1, any:["금지"]},
+   {label:"경고표지 - 노란색/삼각형", weight:1, any:["경고"]},
+   {label:"지시표지 - 파란색", weight:1, any:["지시"]},
+   {label:"안내표지 - 녹색", weight:1, any:["안내"]}
+ ]},
+
+{id:"SM08", subject:"안전관리론", points:"5점", q:"위험성평가의 정의를 설명하고, 실시 절차를 순서대로 쓰시오.",
+ answer:"위험성평가란 유해·위험요인을 파악하고 해당 요인에 의한 부상 또는 질병의 발생 가능성(빈도)과 중대성(강도)을 추정·결정하여 감소대책을 수립·실행하는 일련의 과정이다. 절차는 사전준비 → 유해·위험요인 파악 → 위험성 추정 → 위험성 결정 → 위험성 감소대책 수립 및 실행 → 기록 및 보존 순으로 진행한다.",
+ explain:"위험성평가의 핵심은 '위험성 = 가능성(빈도) × 중대성(강도)'으로 정량화한다는 점입니다. 절차를 순서대로 암기할 때는 '준비-파악-추정-결정-대책-기록'의 앞글자 흐름으로 외우면 실기 서술 시 빠뜨리지 않고 쓸 수 있습니다.",
+ keyPoints:[
+   {label:"유해위험요인 파악", weight:1, any:["유해","위험요인"]},
+   {label:"빈도×강도로 추정", weight:1, any:["빈도","강도","가능성"]},
+   {label:"위험성 결정", weight:1, any:["결정"]},
+   {label:"감소대책 수립·실행", weight:1, any:["감소대책"]},
+   {label:"기록 및 보존", weight:1, any:["기록"]}
+ ]},
+
+/* ---------- 인간공학·시스템안전 HF ---------- */
+{id:"HF01", subject:"인간공학·시스템안전", points:"4점", q:"FTA(결함수분석법)의 정의를 설명하고, AND게이트와 OR게이트가 각각 무엇을 의미하는지 설명하시오.",
+ answer:"FTA는 시스템의 고장이나 재해의 발생을 정상사상(Top event)으로 설정하고, 그 발생 원인을 논리기호를 이용하여 연역적·정량적으로 분석하는 시스템 안전 분석기법이다. AND게이트는 모든 입력사상이 동시에 발생해야 출력사상이 발생함을 의미하고, OR게이트는 입력사상 중 하나라도 발생하면 출력사상이 발생함을 의미한다.",
+ explain:"FTA는 사고(정상사상)를 정점에 두고 원인을 아래로 전개해가는 '연역적(top-down)' 기법이라는 점에서, 원인에서 결과를 향해 올라가는 '귀납적' 기법인 FMEA와 자주 비교 출제됩니다. AND게이트는 모든 조건이 동시에 충족되어야 하므로 발생 확률이 낮아지고, OR게이트는 하나만 발생해도 되므로 발생 확률이 높아진다는 점도 함께 기억해두면 좋습니다.",
+ keyPoints:[
+   {label:"정상사상(Top event) 개념", weight:1, any:["정상사상","톱사상","top"]},
+   {label:"연역적 분석", weight:1, any:["연역적"]},
+   {label:"AND - 모두 동시에 발생", weight:1, any:["모두","동시"]},
+   {label:"OR - 하나라도 발생", weight:1, any:["하나"]}
+ ]},
+
+{id:"HF02", subject:"인간공학·시스템안전", points:"3점", q:"인간공학의 정의를 설명하고, 산업현장에 인간공학을 적용하는 목적 2가지를 쓰시오.",
+ answer:"인간공학이란 인간의 신체적·정신적 특성을 고려하여 기계, 작업, 환경을 인간에게 맞도록 설계함으로써 안전성과 효율성을 높이는 학문이다. 적용 목적은 ① 작업의 안전성 및 효율성(생산성) 향상, ② 작업자의 건강 유지와 피로 경감(쾌적성 향상)이다.",
+ explain:"인간공학은 '기계에 인간을 맞추는 것'이 아니라 '인간에 맞추어 기계·환경을 설계'한다는 발상의 전환이 핵심입니다. 이 관점은 이후 배우는 인간-기계 시스템, 오류방지 설계(Fail-safe, Fool-proof) 등 여러 개념의 기초가 됩니다.",
+ keyPoints:[
+   {label:"신체적·정신적 특성 고려", weight:1, any:["신체","정신"]},
+   {label:"안전성·효율성 향상", weight:1, any:["안전성","효율성","생산성"]},
+   {label:"피로 경감·건강", weight:1, any:["피로","건강"]}
+ ]},
+
+{id:"HF03", subject:"인간공학·시스템안전", points:"4점", q:"인간의 오류 중 착오(Mistake), 실수(Slip), 건망증(Lapse), 위반(Violation)의 개념 차이를 설명하시오.",
+ answer:"착오(Mistake)는 계획이나 판단 자체가 잘못된 경우이다. 실수(Slip)는 계획은 옳았으나 의도와 다르게 행동·조작이 이루어진 경우이다. 건망증(Lapse)은 기억의 실패로 인해 해야 할 행동을 빠뜨리는 경우이다. 위반(Violation)은 규정이나 절차를 알면서도 고의로 지키지 않는 경우이다.",
+ explain:"네 유형은 '의도의 정확성 여부'와 '고의성 여부'로 구분됩니다. 착오·실수·건망증은 의도치 않은 비의도적 오류인 반면, 위반은 알면서도 어기는 의도적 불이행이라는 점이 실기 서술의 핵심 포인트입니다.",
+ keyPoints:[
+   {label:"착오 - 계획 자체의 잘못", weight:1, any:["계획"]},
+   {label:"실수 - 의도와 다른 행동", weight:1, any:["의도"]},
+   {label:"건망증 - 기억 실패로 누락", weight:1, any:["기억","누락"]},
+   {label:"위반 - 고의로 규정 미준수", weight:1, any:["고의","의도적"]}
+ ]},
+
+{id:"HF04", subject:"인간공학·시스템안전", points:"4점", q:"산업안전보건기준에관한규칙상 작업 종류별 조도기준을 초정밀작업, 정밀작업, 보통작업, 그 밖의 작업으로 구분하여 쓰시오.",
+ answer:"초정밀작업 750럭스(lux) 이상, 정밀작업 300럭스 이상, 보통작업 150럭스 이상, 그 밖의 작업 75럭스 이상.",
+ explain:"조도기준은 실기에서 숫자 그대로 암기해야 하는 대표적인 항목입니다. 750-300-150-75 순서로, 정밀도가 높아질수록 필요한 조도가 정확히 2.5배씩 커지는 규칙성으로 기억하면 외우기 쉽습니다.",
+ keyPoints:[
+   {label:"초정밀 750lux", weight:1, numeric:{value:750, tol:0}},
+   {label:"정밀 300lux", weight:1, numeric:{value:300, tol:0}},
+   {label:"보통 150lux", weight:1, numeric:{value:150, tol:0}},
+   {label:"그 밖 75lux", weight:1, numeric:{value:75, tol:0}}
+ ]},
+
+{id:"HF05", subject:"인간공학·시스템안전", points:"3점", q:"두 부품 A, B가 병렬로 연결된 시스템이 있다. A, B 각각의 신뢰도가 0.9일 때, 이 시스템 전체의 신뢰도를 구하는 식과 값을 쓰시오.",
+ answer:"병렬 시스템의 신뢰도 Rs = 1 - (1-R1)(1-R2) = 1 - (1-0.9)(1-0.9) = 1 - (0.1×0.1) = 1 - 0.01 = 0.99",
+ explain:"직렬 시스템은 신뢰도를 서로 곱하기만 하면 되지만(R1×R2), 병렬 시스템은 '적어도 하나만 살아있으면 전체가 작동'하므로 각 부품이 모두 고장날 확률을 구한 뒤 1에서 빼주는 방식으로 계산합니다. 병렬 구성이 직렬보다 전체 신뢰도가 높아지는 이유이기도 합니다.",
+ keyPoints:[
+   {label:"병렬 신뢰도 공식 제시", weight:2, any:["1-(1-","1-(1-r"]},
+   {label:"계산 결과 0.99", weight:2, numeric:{value:0.99, tol:0.005}}
+ ]},
+
+{id:"HF06", subject:"인간공학·시스템안전", points:"3점", q:"안전설계 원칙 중 Fail-safe와 Fool-proof의 개념을 각각 설명하시오.",
+ answer:"Fail-safe는 기계·설비에 고장이나 오작동이 발생하더라도 항상 안전한 상태로 유지되도록 하는 설계 개념이다. Fool-proof는 작업자가 실수를 하더라도 기계가 작동하지 않거나 사고로 이어지지 않도록 하는 설계 개념으로, 인터록 장치가 대표적인 예이다.",
+ explain:"Fail-safe는 '고장이 나더라도 안전 측으로', Fool-proof는 '사람이 실수해도 안전하게'라는 문구로 구분해서 외우면 편합니다. 프레스의 양수조작식 방호장치는 대표적인 Fool-proof 설계의 예로 자주 함께 출제됩니다.",
+ keyPoints:[
+   {label:"Fail-safe - 고장 시 안전 측 유지", weight:2, any:["고장"]},
+   {label:"Fool-proof - 실수해도 안전(인터록 등)", weight:2, any:["실수","인터록"]}
+ ]},
+
+{id:"HF07", subject:"인간공학·시스템안전", points:"3점", q:"산업안전보건기준에관한규칙상 '소음작업'의 정의를 기준 데시벨과 시간으로 설명하시오.",
+ answer:"1일 8시간 작업을 기준으로 85데시벨(dB) 이상의 소음이 발생하는 작업을 말한다.",
+ explain:"소음작업은 조도기준과 함께 실기에서 숫자 그대로 물어보는 대표 항목입니다. '강렬한 소음작업'은 90dB 이상 8시간, 95dB 이상 4시간처럼 데시벨이 커질수록 허용시간이 절반씩 줄어드는 방식으로 세분화되어 있다는 점도 함께 알아두면 응용문제에 대응할 수 있습니다.",
+ keyPoints:[
+   {label:"85dB", weight:2, numeric:{value:85, tol:0}},
+   {label:"8시간 기준", weight:2, any:["8시간"]}
+ ]},
+
+/* ---------- 기계안전 ME ---------- */
+{id:"ME01", subject:"기계안전", points:"4점", q:"프레스 및 전단기의 방호장치 종류 4가지를 쓰고, 그 중 광전자식(감응식) 방호장치의 작동원리를 설명하시오.",
+ answer:"방호장치의 종류는 가드식, 손쳐내기식, 수인식, 양수조작식(광전자식 포함)이다. 광전자식 방호장치는 위험한계 앞에 광선을 투사해 두고, 신체 일부가 광선을 차단하면 이를 감지하여 슬라이드(금형)의 작동을 즉시 정지시키는 방식이다.",
+ explain:"프레스 방호장치는 크게 '위험영역에서 손을 강제로 배제하는 방식(가드식·손쳐내기식·수인식)'과 '위험영역에 들어오면 감지해서 정지시키는 방식(광전자식)', '양손이 모두 조작부에 있어야만 작동하는 방식(양수조작식)'으로 나눌 수 있습니다.",
+ keyPoints:[
+   {label:"가드식", weight:1, any:["가드식"]},
+   {label:"손쳐내기식", weight:1, any:["손쳐내기"]},
+   {label:"수인식", weight:1, any:["수인식"]},
+   {label:"양수조작식/광전자식", weight:1, any:["양수조작","광전자"]},
+   {label:"광선 차단 감지 → 정지", weight:1, any:["광선","차단"]}
+ ]},
+
+{id:"ME02", subject:"기계안전", points:"4점", q:"크레인에 설치해야 하는 방호장치 4가지를 쓰시오.",
+ answer:"권과방지장치, 과부하방지장치, 비상정지장치, 브레이크장치(제동장치)",
+ explain:"권과방지장치는 훅이 과도하게 감겨 올라가는 것을 막는 장치, 과부하방지장치는 정격하중을 초과하면 작동을 자동으로 정지시키는 장치입니다. 네 가지 장치를 '감아 올림-과부하-비상시-제동'의 흐름으로 묶어서 기억하면 좋습니다.",
+ keyPoints:[
+   {label:"권과방지장치", weight:1, any:["권과방지"]},
+   {label:"과부하방지장치", weight:1, any:["과부하방지"]},
+   {label:"비상정지장치", weight:1, any:["비상정지"]},
+   {label:"브레이크(제동)장치", weight:1, any:["브레이크","제동"]}
+ ]},
+
+{id:"ME03", subject:"기계안전", points:"5점", q:"롤러기의 급정지장치는 조작부의 설치 위치에 따라 3가지로 구분된다. 그 종류와 각각의 설치위치 기준(밑면에서의 높이)을 쓰시오.",
+ answer:"손조작식은 밑면으로부터 1.8m 이내에 설치한다. 복부조작식은 밑면으로부터 0.8m 이상 1.1m 이내에 설치한다. 무릎조작식은 밑면으로부터 0.4m 이상 0.6m 이내에 설치한다.",
+ explain:"급정지장치 조작부의 위치는 사람이 조작하는 신체 부위(손·복부·무릎)의 실제 높이에 맞춰 정해져 있습니다. 손조작식이 가장 높고, 복부조작식, 무릎조작식 순으로 낮아진다는 순서와 대략적인 수치 범위를 함께 기억해두면 됩니다.",
+ keyPoints:[
+   {label:"손조작식 1.8m 이내", weight:2, any:["손조작"], numeric:{value:1.8, tol:0.05}},
+   {label:"복부조작식 0.8~1.1m", weight:2, any:["복부조작"]},
+   {label:"무릎조작식 0.4~0.6m", weight:2, any:["무릎조작"]}
+ ]},
+
+{id:"ME04", subject:"기계안전", points:"4점", q:"지게차에 설치해야 하는 대표적인 안전장치 4가지를 쓰시오.",
+ answer:"헤드가드, 백레스트, 전조등 및 후미등, 안전벨트(좌석안전띠)",
+ explain:"헤드가드는 위에서 떨어지는 물체로부터 운전자를 보호하는 장치, 백레스트는 화물이 뒤로 넘어와 운전자를 덮치는 것을 막는 장치입니다. 네 장치를 '위-뒤-야간-몸'을 보호하는 장치로 구분해 기억하면 편합니다.",
+ keyPoints:[
+   {label:"헤드가드", weight:1, any:["헤드가드"]},
+   {label:"백레스트", weight:1, any:["백레스트"]},
+   {label:"전조등 및 후미등", weight:1, any:["전조등","후미등"]},
+   {label:"안전벨트(좌석안전띠)", weight:1, any:["안전벨트","좌석안전띠"]}
+ ]},
+
+{id:"ME05", subject:"기계안전", points:"4점", q:"보일러의 방호장치(안전장치) 4가지를 쓰시오.",
+ answer:"압력방출장치(안전밸브), 압력제한스위치, 고저수위조절장치, 화염검출기",
+ explain:"보일러 사고는 크게 '압력 이상', '수위 이상', '화염(연소) 이상'의 세 가지 원인에서 비롯되며, 각 원인에 대응하는 안전장치가 정해져 있습니다. 압력방출장치는 설정압력 초과 시 증기를 배출하고, 고저수위조절장치는 수위가 비정상일 때 경보·차단하며, 화염검출기는 불꽃이 꺼졌을 때 연료 공급을 차단합니다.",
+ keyPoints:[
+   {label:"압력방출장치(안전밸브)", weight:1, any:["압력방출","안전밸브"]},
+   {label:"압력제한스위치", weight:1, any:["압력제한"]},
+   {label:"고저수위조절장치", weight:1, any:["고저수위","수위조절"]},
+   {label:"화염검출기", weight:1, any:["화염검출"]}
+ ]},
+
+{id:"ME06", subject:"기계안전", points:"3점", q:"안전율(안전계수)의 정의와 계산식을 쓰시오.",
+ answer:"안전율이란 재료나 구조물이 파괴되지 않고 안전하게 사용될 수 있는 정도를 나타내는 지표로, 안전율 = 극한강도(파단강도) ÷ 허용응력 (= 파단하중 ÷ 최대사용하중) 으로 계산한다.",
+ explain:"안전율은 재료의 실제 파괴 강도가 실제 사용 시 걸리는 응력(하중)보다 얼마나 여유가 있는지를 나타내는 배수 개념입니다. 안전율이 클수록 여유(안전 마진)가 크다는 뜻이며, 값이 1보다 작으면 이미 파괴 상태임을 의미합니다.",
+ keyPoints:[
+   {label:"극한강도(파단강도) 개념", weight:2, any:["극한강도","파단강도","파단하중"]},
+   {label:"허용응력(최대사용하중)으로 나눔", weight:2, any:["허용응력","최대사용하중"]}
+ ]},
+
+{id:"ME07", subject:"기계안전", points:"3점", q:"어느 와이어로프의 파단하중이 2,000kgf이고, 그 로프에 걸리는 안전하중(최대사용하중)이 400kgf일 때 안전율을 구하시오.",
+ answer:"안전율 = 파단하중 ÷ 최대사용하중 = 2,000 ÷ 400 = 5",
+ explain:"안전율 계산은 공식에 숫자를 대입하기만 하면 되는 비교적 쉬운 계산형 문제이지만, 분자·분모를 바꿔 쓰는 실수가 잦으므로 '파단하중(강도)을 사용하중(실제 하중)으로 나눈다'는 순서를 정확히 기억해야 합니다.",
+ keyPoints:[
+   {label:"공식 적용(파단하중÷사용하중)", weight:2, any:["2000","400"]},
+   {label:"계산 결과 5", weight:3, numeric:{value:5, tol:0.1}}
+ ]},
+
+{id:"ME08", subject:"기계안전", points:"4점", q:"컨베이어의 재해예방을 위한 방호장치·안전조치 종류를 4가지 이상 쓰시오.",
+ answer:"비상정지장치, 덮개 또는 울, 건널다리(횡단설비), 역전방지장치(이탈방지장치), 접촉예방장치",
+ explain:"컨베이어 재해는 주로 '벨트나 롤러에 신체가 끼임', '이동 중인 화물과의 접촉', '통로 횡단 중 사고'에서 발생합니다. 방호장치도 이 세 가지 위험에 각각 대응하도록 설계되어 있다는 점을 기억하면 종류를 빠짐없이 떠올리기 쉽습니다.",
+ keyPoints:[
+   {label:"비상정지장치", weight:1, any:["비상정지"]},
+   {label:"덮개 또는 울", weight:1, any:["덮개","울"]},
+   {label:"건널다리(횡단설비)", weight:1, any:["건널다리","횡단"]},
+   {label:"역전방지·이탈방지장치", weight:1, any:["역전방지","이탈방지"]}
+ ]},
+
+{id:"ME09", subject:"기계안전", points:"3점", q:"압력용기 등에 설치하는 안전밸브의 작동원리와 설치 목적을 설명하시오.",
+ answer:"용기 내부의 압력이 설정된 압력을 초과하면 밸브가 자동으로 개방되어 내부의 증기나 가스를 배출함으로써 압력을 낮추고, 이를 통해 용기의 파열이나 폭발 사고를 방지하는 장치이다.",
+ explain:"안전밸브는 압력용기·보일러 등에서 가장 기본적인 과압 방지 장치입니다. '설정압력 초과 → 자동 개방 → 배출 → 압력 저하 → 파열 방지'라는 작동 흐름을 순서대로 서술하는 것이 채점 포인트입니다.",
+ keyPoints:[
+   {label:"설정압력 초과 시 작동", weight:1, any:["설정압력","초과"]},
+   {label:"자동 개방·배출", weight:1, any:["개방","배출"]},
+   {label:"파열(폭발) 방지 목적", weight:2, any:["파열","폭발"]}
+ ]},
+
+/* ---------- 전기안전 EL ---------- */
+{id:"EL01", subject:"전기안전", points:"4점", q:"감전재해의 위험도(전격의 위험도)를 결정하는 요인을 4가지 쓰시오.",
+ answer:"통전전류의 크기, 통전시간, 통전경로, 전원의 종류(교류·직류) 및 주파수",
+ explain:"감전의 위험도는 '얼마나 센 전류가, 얼마나 오래, 어느 경로로, 어떤 성질의 전원이' 흘렀는지에 따라 결정됩니다. 특히 통전경로 중 심장을 관통하는 경로(예: 왼손-가슴)가 가장 위험하다는 점도 자주 함께 출제됩니다.",
+ keyPoints:[
+   {label:"통전전류의 크기", weight:1, any:["전류"]},
+   {label:"통전시간", weight:1, any:["시간"]},
+   {label:"통전경로", weight:1, any:["경로"]},
+   {label:"전원의 종류·주파수", weight:1, any:["전원","주파수","교류","직류"]}
+ ]},
+
+{id:"EL02", subject:"전기안전", points:"3점", q:"전기기계·기구를 접지하는 목적을 설명하시오.",
+ answer:"누전이 발생했을 때 전류를 대지로 흘려보내 인체에 흐르는 전류를 최소화함으로써 감전을 방지하고, 뇌서지 등 이상전압으로부터 기기의 손상을 방지하며, 보호계전기(누전차단기 등)의 동작을 확실하게 하기 위함이다.",
+ explain:"접지의 목적을 '감전 방지 - 기기 보호 - 보호장치의 확실한 동작'이라는 세 갈래로 나누어 기억하면 서술이 쉬워집니다. 특히 단순히 '감전을 막기 위해서'라고만 쓰면 부분점수만 받을 수 있으니 세 가지를 모두 언급하는 것이 좋습니다.",
+ keyPoints:[
+   {label:"감전 방지(대지로 전류 방류)", weight:2, any:["감전"]},
+   {label:"이상전압으로부터 기기 손상 방지", weight:1, any:["이상전압","기기손상"]},
+   {label:"보호계전기(차단기) 동작 확보", weight:1, any:["보호계전기","차단기"]}
+ ]},
+
+{id:"EL03", subject:"전기안전", points:"4점", q:"KEC(한국전기설비규정) 기준 저압전로의 절연저항 기준을 사용전압 구분(SELV·PELV, FELV 및 500V 이하, 500V 초과)별로 쓰시오.",
+ answer:"SELV 및 PELV(DC 250V 시험) - 0.5MΩ 이상, FELV 및 500V 이하(DC 500V 시험) - 1.0MΩ 이상, 500V 초과(DC 1,000V 시험) - 1.0MΩ 이상.",
+ explain:"절연저항 기준은 회로의 사용전압이 낮을수록(SELV·PELV) 시험전압과 요구 절연저항도 함께 낮게, 전압이 높아질수록 시험전압만 올라가고 절연저항 기준값은 1.0MΩ으로 동일하게 유지된다는 점이 특징입니다. 표를 통째로 외우기보다 이 규칙성을 이해하면 응용문제에도 대응할 수 있습니다.",
+ keyPoints:[
+   {label:"SELV·PELV → 0.5MΩ", weight:2, numeric:{value:0.5, tol:0.02}, any:["selv","pelv","0.5"]},
+   {label:"FELV·500V이하 → 1.0MΩ", weight:1, any:["felv","500"]},
+   {label:"500V 초과 → 1.0MΩ", weight:1, any:["1000","500V초과","500v초과"]}
+ ]},
+
+{id:"EL04", subject:"전기안전", points:"6점", q:"방폭구조의 종류 중 내압방폭구조, 압력방폭구조, 본질안전방폭구조의 원리를 각각 설명하시오.",
+ answer:"내압방폭구조(d)는 용기 내부에서 폭발이 발생하더라도 용기가 그 폭발압력을 견디고, 접합면의 틈으로 화염이 외부로 전파되지 않도록 만든 구조이다. 압력방폭구조(p)는 용기 내부에 보호가스(공기, 불활성가스 등)를 채워 내부압력을 외부보다 높게 유지함으로써 폭발성가스가 내부로 침입하지 못하도록 한 구조이다. 본질안전방폭구조(ia, ib)는 정상 시 및 사고 시에 발생하는 전기불꽃·아크·열이 폭발성가스를 점화시킬 수 없다는 것이 점화시험 등으로 확인된 구조이다.",
+ explain:"세 구조의 원리를 한 줄로 요약하면, 내압방폭구조는 '폭발은 안에서 나되 밖으로 새지 않게', 압력방폭구조는 '위험가스가 아예 못 들어오게', 본질안전방폭구조는 '애초에 점화 능력 자체를 없게'라는 서로 다른 접근입니다. 이 요약 문장을 먼저 떠올리고 세부 설명을 덧붙이면 답안을 놓치지 않고 쓸 수 있습니다.",
+ keyPoints:[
+   {label:"내압 - 폭발압력 견딤/화염전파 차단", weight:2, any:["폭발압력","화염","전파"]},
+   {label:"압력 - 보호가스 봉입/침입 차단", weight:2, any:["보호가스","침입"]},
+   {label:"본질안전 - 점화 능력 없음(점화시험 확인)", weight:2, any:["점화","본질안전"]}
+ ]},
+
+{id:"EL05", subject:"전기안전", points:"4점", q:"정전기 재해를 예방하기 위한 대책을 4가지 이상 쓰시오.",
+ answer:"접지, 도전성 재료의 사용, 가습(상대습도 60~70% 정도 유지), 제전기(이온화 장치) 설치, 유속 제한(배관 내 유속을 제한)",
+ explain:"정전기 대책은 '전하를 흘려보낸다(접지·도전성 재료)', '전하가 잘 쌓이지 않게 한다(가습)', '쌓인 전하를 중화한다(제전기)', '애초에 마찰·유동을 줄인다(유속 제한)'는 네 가지 접근으로 나눌 수 있습니다.",
+ keyPoints:[
+   {label:"접지", weight:1, any:["접지"]},
+   {label:"도전성 재료 사용", weight:1, any:["도전성"]},
+   {label:"가습(습도 조절)", weight:1, any:["가습","습도"]},
+   {label:"제전기 설치", weight:1, any:["제전기"]}
+ ]},
+
+{id:"EL06", subject:"전기안전", points:"3점", q:"누전차단기를 설치해야 하는 대표적인 장소·기기를 설명하고, 설치 목적을 쓰시오.",
+ answer:"대지전압이 150V를 초과하는 이동형·휴대형 전기기계기구, 물기 있는 장소에서 사용하는 전기기계기구, 임시배선의 전로 등에 설치한다. 목적은 누전이 발생했을 때 신속하게 전로를 차단하여 감전재해를 예방하기 위함이다.",
+ explain:"누전차단기는 접지만으로는 충분히 낮추기 어려운 감전 위험을 추가로 차단하기 위한 2차 안전장치입니다. '150V 초과', '물기 있는 장소', '이동형·휴대형 기구'라는 세 가지 조건 중 하나만 해당해도 설치 대상이 된다는 점이 핵심입니다.",
+ keyPoints:[
+   {label:"대지전압 150V 초과", weight:2, numeric:{value:150, tol:0}},
+   {label:"물기 있는 장소", weight:1, any:["물기"]},
+   {label:"신속한 전로 차단 → 감전 예방", weight:1, any:["차단","감전"]}
+ ]},
+
+{id:"EL07", subject:"전기안전", points:"3점", q:"아크 용접 작업 시 감전을 방지하기 위해 사용하는 자동전격방지기의 기능을 설명하시오.",
+ answer:"용접봉으로 용접 작업을 하지 않는 무부하 상태일 때 출력측의 무부하전압을 25V 이하의 안전전압으로 자동으로 낮추어 두었다가, 용접봉과 모재가 접촉하는 순간에만 용접에 필요한 전압을 공급함으로써 작업자의 감전을 방지하는 장치이다.",
+ explain:"용접 작업 중 감전사고는 대부분 '용접을 하지 않는 대기 시간'에 몸이 용접봉이나 홀더에 닿으면서 발생합니다. 자동전격방지기는 바로 이 대기 시간의 전압을 낮춰 위험을 없애는 장치라는 점을 이해하면 원리가 쉽게 외워집니다.",
+ keyPoints:[
+   {label:"무부하 시 전압을 낮춤", weight:2, any:["무부하"]},
+   {label:"25V 이하 안전전압", weight:2, numeric:{value:25, tol:1}}
+ ]},
+
+{id:"EL08", subject:"전기안전", points:"3점", q:"전기화재(C급 화재)의 정의와 소화 시 유의사항을 설명하시오.",
+ answer:"전기가 흐르고 있는 상태에서 전기설비나 기기에서 발생하는 화재로 C급으로 분류한다. 통전 중인 상태에서 물을 사용해 소화하면 소화자가 감전될 위험이 있으므로, 반드시 전원을 차단한 뒤 소화하거나 이산화탄소(CO2)소화기, 분말소화기 등 절연성이 있는 소화 수단을 사용해야 한다.",
+ explain:"C급 화재의 핵심은 '통전 중'이라는 조건입니다. 전원이 차단된 이후에는 일반 화재(A급)에 준해 소화할 수 있지만, 통전 중에는 물이 전기를 통하는 매개체가 되어 2차 감전사고로 이어질 수 있다는 점이 출제 포인트입니다.",
+ keyPoints:[
+   {label:"C급으로 분류", weight:1, any:["c급"]},
+   {label:"물 사용 금지(감전 위험)", weight:2, any:["물","감전"]},
+   {label:"CO2·분말소화기 사용", weight:1, any:["이산화탄소","co2","분말"]}
+ ]},
+
+/* ---------- 화공안전 CH ---------- */
+{id:"CH01", subject:"화공안전", points:"3점", q:"인화점과 발화점(착화점)의 차이를 설명하시오.",
+ answer:"인화점은 가연물 표면에서 발생한 증기가 공기와 혼합되어 점화원이 주어졌을 때 불이 붙을 수 있는 최저온도이다. 발화점(착화점)은 점화원이 없어도 가연물 자체에 축적된 열만으로 스스로 발화하는 최저온도이다.",
+ explain:"두 개념의 결정적 차이는 '점화원이 필요한가'입니다. 인화점은 외부 불씨가 있어야 불이 붙는 온도이고, 발화점은 불씨 없이도 스스로 타기 시작하는 온도이므로 일반적으로 발화점이 인화점보다 훨씬 높습니다.",
+ keyPoints:[
+   {label:"인화점 - 점화원 필요", weight:2, any:["점화원","불꽃"]},
+   {label:"발화점 - 점화원 없이 스스로 발화", weight:2, any:["스스로","자연발화","점화원없이"]}
+ ]},
+
+{id:"CH02", subject:"화공안전", points:"5점", q:"화재의 종류를 A급, B급, C급, D급, K급으로 구분하고 각각의 대상물을 설명하시오.",
+ answer:"A급(일반화재) - 종이, 목재, 섬유 등 일반 가연물에 의한 화재. B급(유류화재) - 휘발유, 경유 등 가연성 액체에 의한 화재. C급(전기화재) - 통전 중인 전기설비·기기에서 발생하는 화재. D급(금속화재) - 마그네슘, 나트륨 등 가연성 금속에 의한 화재. K급(주방화재) - 식용유 등 조리 시 사용하는 가연성 기름에 의한 화재.",
+ explain:"화재의 급수는 소화 방법을 결정하는 기준이 되므로, 급수와 대상물을 함께 암기해두면 실기뿐 아니라 실무에서도 바로 활용할 수 있습니다. 특히 D급(금속화재)은 물을 사용하면 오히려 폭발적으로 반응할 수 있어 전용 소화약제를 써야 한다는 점도 함께 알아두면 좋습니다.",
+ keyPoints:[
+   {label:"A급 - 일반(종이·목재)", weight:1, any:["일반화재","종이","목재"]},
+   {label:"B급 - 유류", weight:1, any:["유류","기름"]},
+   {label:"C급 - 전기", weight:1, any:["전기화재"]},
+   {label:"D급 - 금속", weight:1, any:["금속화재"]},
+   {label:"K급 - 주방(식용유)", weight:1, any:["주방","식용유"]}
+ ]},
+
+{id:"CH03", subject:"화공안전", points:"4점", q:"물질안전보건자료(MSDS)에 포함되어야 하는 항목을 5가지 이상 쓰시오.",
+ answer:"화학제품과 회사에 관한 정보, 유해성·위험성, 구성성분의 명칭 및 함유량, 응급조치요령, 폭발·화재 시 대처방법, 누출 사고 시 대처방법, 취급 및 저장방법, 노출방지 및 개인보호구 등 총 16개 항목으로 구성된다.",
+ explain:"MSDS(물질안전보건자료)는 GHS(화학물질 분류·표시에 관한 세계조화시스템) 기준에 따라 총 16개 항목으로 구성이 표준화되어 있습니다. 실기에서는 16개를 모두 쓰라고 요구하기보다 대표 항목 5가지 이상을 쓰라는 형태로 자주 출제됩니다.",
+ keyPoints:[
+   {label:"유해성·위험성", weight:1, any:["유해성","위험성"]},
+   {label:"구성성분의 명칭 및 함유량", weight:1, any:["구성성분","함유량"]},
+   {label:"응급조치요령", weight:1, any:["응급조치"]},
+   {label:"폭발·화재 시 대처방법", weight:1, any:["폭발","화재시"]},
+   {label:"취급 및 저장방법 / 개인보호구", weight:1, any:["취급","저장","보호구"]}
+ ]},
+
+{id:"CH04", subject:"화공안전", points:"4점", q:"국소배기장치의 주요 구성요소를 쓰고, 후드 설치 시 유의사항을 설명하시오.",
+ answer:"국소배기장치는 후드(오염물질 포집), 덕트(오염공기 이송관로), 공기정화장치(오염물질 제거), 배풍기(송풍기, 동력원)로 구성된다. 후드는 유해물질 발생원에 최대한 가깝게 설치하고, 가능한 한 포위식·부스식 형태로 설치하며, 필요한 제어풍속을 확보해야 한다.",
+ explain:"국소배기장치는 오염물질이 작업자의 호흡영역까지 퍼지기 전에 발생원 가까이에서 포집하는 것이 핵심입니다. 그래서 후드를 발생원에서 멀리 설치하거나 개방식으로 설치하면 포집 효율이 급격히 떨어진다는 점이 자주 출제됩니다.",
+ keyPoints:[
+   {label:"후드", weight:1, any:["후드"]},
+   {label:"덕트", weight:1, any:["덕트"]},
+   {label:"공기정화장치", weight:1, any:["공기정화"]},
+   {label:"배풍기(송풍기)", weight:1, any:["배풍기","송풍기"]},
+   {label:"발생원에 가깝게 설치", weight:1, any:["발생원","가깝"]}
+ ]},
+
+{id:"CH05", subject:"화공안전", points:"3점", q:"위험물 중 제4류 위험물(인화성액체)의 정의와 대표적인 품명 분류를 쓰시오.",
+ answer:"상온에서 인화되기 쉬운 액체 상태의 물질로, 특수인화물, 제1석유류(휘발유 등), 알코올류, 제2석유류(등유·경유 등), 제3석유류(중유 등), 제4석유류, 동식물유류 등으로 구분한다.",
+ explain:"제4류 위험물은 대부분의 화재·폭발 사고와 직결되는 유류로, 인화점을 기준으로 품명을 세분화한다는 점이 특징입니다. 인화점이 낮을수록(특수인화물에 가까울수록) 더 위험한 물질로 분류됩니다.",
+ keyPoints:[
+   {label:"인화성 액체", weight:2, any:["인화성"]},
+   {label:"석유류·알코올류 등 품명 언급", weight:2, any:["석유류","알코올류","특수인화물"]}
+ ]},
+
+{id:"CH06", subject:"화공안전", points:"3점", q:"폭발이 일어나기 위해 동시에 갖추어져야 하는 3가지 요소(연소의 3요소에 대응)를 쓰시오.",
+ answer:"가연성 물질(연료), 조연성 물질(산소공급원), 점화원(열원). 이 세 가지가 동시에 갖추어질 때 연소·폭발이 발생한다.",
+ explain:"이른바 '연소(폭발)의 3요소'로, 소화 원리도 이 세 요소 중 하나 이상을 제거하는 방식(냉각소화-열원 제거, 질식소화-산소 차단, 제거소화-가연물 제거)으로 설명됩니다. 폭발 문제와 소화 원리 문제가 같은 개념에서 함께 출제되는 경우가 많습니다.",
+ keyPoints:[
+   {label:"가연성 물질(연료)", weight:1, any:["가연성","연료"]},
+   {label:"조연성 물질(산소공급원)", weight:1, any:["산소","조연성"]},
+   {label:"점화원(열원)", weight:1, any:["점화원","열원"]}
+ ]},
+
+/* ---------- 건설안전 CO ---------- */
+{id:"CO01", subject:"건설안전", points:"4점", q:"추락재해 방지를 위한 안전난간의 구성요소 4가지와, 상부난간대의 설치 높이 기준을 쓰시오.",
+ answer:"안전난간은 상부난간대, 중간난간대, 발끝막이판, 난간기둥으로 구성된다. 상부난간대는 바닥면·발판 또는 경사로의 표면으로부터 90cm 이상 지점에 설치해야 한다.",
+ explain:"안전난간의 4대 구성요소 중 '발끝막이판'은 놓치기 쉬운 항목이므로 꼭 함께 암기해야 합니다. 상부난간대 높이 90cm는 조도기준(750/300/150/75)과 함께 실기에서 숫자를 정확히 요구하는 대표적인 항목입니다.",
+ keyPoints:[
+   {label:"상부난간대", weight:1, any:["상부난간대"]},
+   {label:"중간난간대", weight:1, any:["중간난간대"]},
+   {label:"발끝막이판", weight:1, any:["발끝막이"]},
+   {label:"난간기둥", weight:1, any:["난간기둥"]},
+   {label:"높이 90cm 이상", weight:1, numeric:{value:90, tol:0}}
+ ]},
+
+{id:"CO02", subject:"건설안전", points:"3점", q:"추락방지망(안전방망)을 설치할 때 준수해야 할 기준을 2가지 이상 쓰시오.",
+ answer:"작업면으로부터 방망 설치지점까지의 수직거리는 10m를 초과하지 않도록 하고, 방망의 처짐은 짧은 변 길이의 12% 이상이 되도록 설치하며, 방망사는 규정된 인장강도 기준을 충족해야 한다.",
+ explain:"방망 설치기준은 '너무 낮게(먼 거리) 설치하면 낙하 충격을 흡수하지 못한다'는 원리와 '적당히 처져 있어야 충격을 분산시킨다'는 원리에서 출발합니다. 수직거리 10m, 처짐 12%라는 두 숫자를 짝지어 기억해두면 좋습니다.",
+ keyPoints:[
+   {label:"수직거리 10m 이내", weight:2, numeric:{value:10, tol:0.5}},
+   {label:"처짐 12% 이상", weight:2, numeric:{value:12, tol:0.5}}
+ ]},
+
+{id:"CO03", subject:"건설안전", points:"4점", q:"강관비계의 벽이음 조립간격 기준을 단관비계와 틀비계로 구분하여 쓰시오.",
+ answer:"단관비계는 수직방향 5m 이하, 수평방향 5m 이하 간격으로 벽이음을 설치한다. 틀비계는 수직방향 6m 이하, 수평방향 8m 이하 간격으로 벽이음을 설치한다.",
+ explain:"단관비계는 5m×5m, 틀비계는 6m×8m로 서로 다른 간격 기준을 갖습니다. 틀비계가 구조적으로 더 안정적이어서 단관비계보다 넓은 간격이 허용된다는 점을 함께 이해하면 헷갈리지 않습니다.",
+ keyPoints:[
+   {label:"단관비계 수직 5m·수평 5m", weight:2, any:["단관"], numeric:{value:5, tol:0.2}},
+   {label:"틀비계 수직 6m·수평 8m", weight:2, any:["틀비계"]}
+ ]},
+
+{id:"CO04", subject:"건설안전", points:"4점", q:"사다리식 통로를 설치할 때 준수해야 할 사항을 3가지 이상 쓰시오.",
+ answer:"견고한 구조로 할 것, 발판 간격은 일정하게 할 것, 폭은 30cm 이상으로 할 것, 사다리가 넘어지거나 미끄러지지 않도록 견고하게 고정할 것, 사다리 상단은 걸쳐놓은 지점으로부터 60cm 이상 올라가도록 할 것, 통로의 기울기는 75도 이하로 할 것.",
+ explain:"사다리식 통로 기준에서 자주 출제되는 숫자는 '폭 30cm 이상', '상단 돌출 60cm 이상', '기울기 75도 이하' 세 가지입니다. 고정식 사다리로 높이가 7m 이상인 경우에는 등받이울을 설치해야 한다는 심화 내용도 함께 알아두면 좋습니다.",
+ keyPoints:[
+   {label:"폭 30cm 이상", weight:2, numeric:{value:30, tol:1}},
+   {label:"상단 60cm 이상 돌출", weight:2, numeric:{value:60, tol:1}},
+   {label:"기울기 75도 이하", weight:1, numeric:{value:75, tol:1}}
+ ]},
+
+{id:"CO05", subject:"건설안전", points:"3점", q:"굴착작업 시 지반 붕괴 등으로 근로자에게 위험을 미칠 우려가 있을 때 사업주가 취해야 할 조치를 3가지 이상 쓰시오.",
+ answer:"흙막이 지보공을 설치하고, 방호망을 설치하며, 근로자의 출입을 금지한다. 또한 굴착 작업 전에 지반의 형상·지질·지층 상태 등을 사전 조사하여 굴착시기와 순서를 정하고, 매설물의 유무와 상태를 확인한 후 작업해야 한다.",
+ explain:"굴착작업의 안전조치는 '무너지지 않게 지지한다(흙막이 지보공)', '떨어지는 것을 막는다(방호망)', '위험구역에 사람을 두지 않는다(출입금지)', '사전에 위험요소를 파악한다(사전조사)'는 네 갈래로 정리할 수 있습니다.",
+ keyPoints:[
+   {label:"흙막이 지보공 설치", weight:2, any:["흙막이","지보공"]},
+   {label:"출입 금지", weight:1, any:["출입금지"]},
+   {label:"사전조사(지반·매설물)", weight:2, any:["사전조사","매설물"]}
+ ]},
+
+{id:"CO06", subject:"건설안전", points:"3점", q:"거푸집 동바리를 조립할 때 준수해야 할 안전기준을 3가지 이상 쓰시오.",
+ answer:"동바리의 침하를 방지하기 위해 받침목이나 깔판을 사용하거나 콘크리트를 타설하는 등의 조치를 한다. 파이프 서포트 등 동바리를 이어서 사용하는 경우 4개 이상의 볼트 또는 클램프 등 견고한 결합재료로 접속한다. 강재와 강재의 접속부는 볼트·클램프로 고정하고, 상하 동바리는 같은 축선상에 설치한다.",
+ explain:"거푸집 동바리 사고는 대부분 '침하'와 '이음부 결합 불량'에서 시작됩니다. 침하방지 조치와 이음부 고정 방법을 핵심 문장으로 기억해두면 서술형 답안의 뼈대를 세울 수 있습니다.",
+ keyPoints:[
+   {label:"침하 방지 조치(받침목·깔판)", weight:2, any:["침하","받침목","깔판"]},
+   {label:"이음부 견고한 결합(볼트·클램프)", weight:2, any:["볼트","클램프"]},
+   {label:"동일 축선상 설치", weight:1, any:["축선"]}
+ ]},
+
+{id:"CO07", subject:"건설안전", points:"3점", q:"콘크리트 타설 작업 시 준수해야 할 안전대책을 3가지 이상 쓰시오.",
+ answer:"타설 전 거푸집 동바리의 변형·변위와 지반 침하 유무를 점검한다. 편심이 발생하지 않도록 타설 순서를 계획하고, 거푸집이 과도한 하중으로 변형되지 않도록 타설 속도를 조절한다. 작업 중 이상 징후가 발견되면 즉시 작업을 중지하고 근로자를 대피시킨다.",
+ explain:"콘크리트 타설 사고는 '타설 전 점검 소홀'과 '타설 중 과속·편중 타설로 인한 거푸집 붕괴'가 대표적인 원인입니다. '점검-계획-속도조절-이상시 대피'의 흐름으로 답안을 구성하면 빠짐없이 서술할 수 있습니다.",
+ keyPoints:[
+   {label:"타설 전 동바리·지반 점검", weight:2, any:["점검"]},
+   {label:"편심 방지·타설 순서 계획", weight:1, any:["편심","타설순서"]},
+   {label:"타설 속도 조절", weight:1, any:["타설속도","속도조절"]},
+   {label:"이상 시 작업중지·대피", weight:1, any:["작업중지","대피"]}
+ ]},
+
+{id:"CO08", subject:"건설안전", points:"3점", q:"유해위험방지계획서를 제출해야 하는 건설공사의 대표적인 규모 기준을 2가지 이상 예를 들어 설명하고, 제출 시기를 쓰시오.",
+ answer:"지상높이 31m 이상인 건축물, 최대 지간길이 50m 이상인 교량, 터널 건설공사, 깊이 10m 이상인 굴착공사 등 일정 규모 이상의 공사가 대상이며, 해당 공사의 착공 전날까지 관련 서류를 첨부하여 공단에 제출해야 한다.",
+ explain:"유해위험방지계획서는 '착공 이후'가 아니라 '착공 전에' 위험요소를 미리 심사받도록 하는 사전예방 제도라는 점이 핵심입니다. 규모 기준(31m, 50m, 10m 등)은 대표 예시 위주로 기억하고, 제출 시기가 '착공 전날까지'라는 점을 놓치지 않아야 합니다.",
+ keyPoints:[
+   {label:"규모 기준 예시(31m/50m/10m 등)", weight:2, any:["31m","50m","10m","높이","교량","굴착"]},
+   {label:"착공 전(전날까지) 제출", weight:2, any:["착공전","착공 전"]}
+ ]}
+
+];
+
+/* ============================= 상태 관리 ============================= */
+var STORAGE_KEY = "safety-drill-v1";
+var state = { history:{}, filter:"전체", mode:"seq", wrongOnly:false };
+var queue = [];
+var qIndex = 0;
+var currentGraded = false;
+
+function loadState(){
+  try{
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if(raw){
+      var parsed = JSON.parse(raw);
+      if(parsed && parsed.history) state.history = parsed.history;
+    }
+  }catch(e){ /* storage unavailable - fall back to in-memory only */ }
+}
+function saveState(){
+  try{
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({history:state.history}));
+  }catch(e){ /* ignore */ }
+}
+
+var SUBJECTS = ["전체","안전관리론","인간공학·시스템안전","기계안전","전기안전","화공안전","건설안전"];
+
+function byId(id){ for(var i=0;i<QUESTIONS.length;i++){ if(QUESTIONS[i].id===id) return QUESTIONS[i]; } return null; }
+
+function isWrong(id){
+  var h = state.history[id];
+  if(!h) return false;
+  return h.lastScore < 80;
+}
+function isAnswered(id){ return !!state.history[id]; }
+
+/* ============================= 채점 엔진 ============================= */
+function normalize(s){
+  return (s||"").toLowerCase().replace(/[\s,./·・\-()~%:;"'!?]/g,"");
+}
+function extractNumbers(s){
+  var m = (s||"").match(/-?\d+(\.\d+)?/g);
+  if(!m) return [];
+  return m.map(function(x){ return parseFloat(x); });
+}
+function grade(q, rawAnswer){
+  var norm = normalize(rawAnswer);
+  var nums = extractNumbers(rawAnswer);
+  var totalWeight = 0, gotWeight = 0;
+  var hits = [], misses = [];
+
+  q.keyPoints.forEach(function(kp){
+    totalWeight += kp.weight;
+    var matched = false;
+
+    if(kp.any){
+      for(var i=0;i<kp.any.length;i++){
+        if(norm.indexOf(normalize(kp.any[i])) !== -1){ matched = true; break; }
+      }
+    }
+    if(!matched && kp.numeric){
+      for(var j=0;j<nums.length;j++){
+        if(Math.abs(nums[j]-kp.numeric.value) <= (kp.numeric.tol||0) + 1e-9){ matched = true; break; }
+      }
+    }
+    if(matched){ gotWeight += kp.weight; hits.push(kp.label); }
+    else{ misses.push(kp.label); }
+  });
+
+  var score = totalWeight>0 ? Math.round((gotWeight/totalWeight)*100) : 0;
+  return {score:score, hits:hits, misses:misses};
+}
+
+/* ============================= 렌더링 ============================= */
+var $chips = document.getElementById("subjectChips");
+var $modeToggle = document.getElementById("modeToggle");
+var $quizArea = document.getElementById("quizArea");
+var $statSolved = document.getElementById("statSolved");
+var $statAvg = document.getElementById("statAvg");
+var $statWrong = document.getElementById("statWrong");
+var $resetBtn = document.getElementById("resetStatsBtn");
+
+function renderChips(){
+  $chips.innerHTML = "";
+  SUBJECTS.forEach(function(s){
+    var b = document.createElement("button");
+    b.className = "chip" + (state.filter===s ? " active" : "");
+    b.textContent = s;
+    b.onclick = function(){ state.filter = s; buildQueue(); renderChips(); renderModeToggle(); renderQuestionView(); };
+    $chips.appendChild(b);
+  });
+}
+
+function renderModeToggle(){
+  $modeToggle.innerHTML = "";
+  var seqBtn = document.createElement("button");
+  seqBtn.className = "chip" + (state.mode==="seq" ? " active" : "");
+  seqBtn.textContent = "순차 출제";
+  seqBtn.onclick = function(){ state.mode="seq"; buildQueue(); renderModeToggle(); renderQuestionView(); };
+
+  var randBtn = document.createElement("button");
+  randBtn.className = "chip" + (state.mode==="rand" ? " active" : "");
+  randBtn.textContent = "랜덤 출제";
+  randBtn.onclick = function(){ state.mode="rand"; buildQueue(); renderModeToggle(); renderQuestionView(); };
+
+  var wrongBtn = document.createElement("button");
+  wrongBtn.className = "chip" + (state.wrongOnly ? " active" : "");
+  wrongBtn.textContent = "오답노트만";
+  wrongBtn.onclick = function(){ state.wrongOnly = !state.wrongOnly; buildQueue(); renderModeToggle(); renderQuestionView(); };
+
+  $modeToggle.appendChild(seqBtn);
+  $modeToggle.appendChild(randBtn);
+  $modeToggle.appendChild(wrongBtn);
+}
+
+function shuffle(arr){
+  var a = arr.slice();
+  for(var i=a.length-1;i>0;i--){
+    var j = Math.floor(Math.random()*(i+1));
+    var t=a[i]; a[i]=a[j]; a[j]=t;
+  }
+  return a;
+}
+
+function buildQueue(){
+  var pool = QUESTIONS.filter(function(q){
+    if(state.filter!=="전체" && q.subject!==state.filter) return false;
+    if(state.wrongOnly && !isWrong(q.id)) return false;
+    return true;
+  });
+  queue = state.mode==="rand" ? shuffle(pool) : pool;
+  qIndex = 0;
+  currentGraded = false;
+}
+
+function computeStats(){
+  var ids = Object.keys(state.history);
+  var solved = ids.length;
+  var wrong = ids.filter(isWrong).length;
+  var avg = "–";
+  if(solved>0){
+    var sum = 0;
+    ids.forEach(function(id){ sum += state.history[id].lastScore; });
+    avg = Math.round(sum/solved) + "점";
+  }
+  return {solved:solved, wrong:wrong, avg:avg};
+}
+function renderStats(){
+  var s = computeStats();
+  $statSolved.textContent = s.solved;
+  $statAvg.textContent = s.avg;
+  $statWrong.textContent = s.wrong;
+}
+
+function scoreClass(score){
+  if(score>=80) return "good";
+  if(score>=50) return "mid";
+  return "low";
+}
+function scoreNote(score){
+  if(score>=90) return "핵심을 정확히 짚었어요.";
+  if(score>=80) return "합격권 답안이에요. 표현을 조금 더 다듬어보세요.";
+  if(score>=50) return "절반은 맞혔지만 놓친 핵심 키워드가 있어요.";
+  return "핵심 키워드가 많이 빠졌어요. 모범답안과 해설을 꼭 확인하세요.";
+}
+
+function renderQuestionView(){
+  currentGraded = false;
+  if(queue.length===0){
+    var emptyMsg = state.wrongOnly
+      ? "이 조건에서는 아직 오답노트에 담긴 문제가 없습니다. 문제를 풀다 보면 여기 자동으로 쌓여요."
+      : "해당 조건에 맞는 문제가 없습니다.";
+    $quizArea.innerHTML = '<div class="qcard"><div class="qcard-body"><p class="empty">'+emptyMsg+'</p></div></div>';
+    return;
+  }
+  if(qIndex >= queue.length) qIndex = 0;
+  var q = queue[qIndex];
+
+  var wrap = document.createElement("div");
+  wrap.className = "qcard";
+
+  var stripe = document.createElement("div");
+  stripe.className = "stripe";
+  wrap.appendChild(stripe);
+
+  var body = document.createElement("div");
+  body.className = "qcard-body";
+
+  var meta = document.createElement("div");
+  meta.className = "qmeta";
+  meta.innerHTML =
+    '<span class="tag subject">'+q.subject+'</span>'+
+    '<span class="tag progress">'+(qIndex+1)+' / '+queue.length+'</span>'+
+    '<span class="tag points">배점 '+q.points+' 내외</span>'+
+    (isAnswered(q.id) ? '<span class="tag points">이전 점수 '+state.history[q.id].lastScore+'점</span>' : '');
+  body.appendChild(meta);
+
+  var qtext = document.createElement("div");
+  qtext.className = "qtext";
+  qtext.textContent = q.q;
+  body.appendChild(qtext);
+
+  var ta = document.createElement("textarea");
+  ta.placeholder = "여기에 서술형 답안을 작성하세요...";
+  body.appendChild(ta);
+
+  var actions = document.createElement("div");
+  actions.className = "actions";
+  var gradeBtn = document.createElement("button");
+  gradeBtn.className = "primary";
+  gradeBtn.textContent = "채점하기";
+  var skipBtn = document.createElement("button");
+  skipBtn.className = "text-btn";
+  skipBtn.textContent = "모범답안 바로 보기";
+  actions.appendChild(gradeBtn);
+  actions.appendChild(skipBtn);
+  body.appendChild(actions);
+
+  var resultHolder = document.createElement("div");
+  body.appendChild(resultHolder);
+
+  function doGrade(g){
+    state.history[q.id] = {lastScore:g.score, bestScore: state.history[q.id] ? Math.max(state.history[q.id].bestScore, g.score) : g.score, attempts:(state.history[q.id]?state.history[q.id].attempts:0)+1};
+    saveState();
+    renderStats();
+    resultHolder.innerHTML = "";
+    resultHolder.appendChild(renderResult(q, g));
+    currentGraded = true;
+    gradeBtn.disabled = true;
+    skipBtn.style.display = "none";
+    ta.readOnly = true;
+  }
+
+  gradeBtn.onclick = function(){
+    if(currentGraded) return;
+    var g = grade(q, ta.value);
+    doGrade(g);
+  };
+  skipBtn.onclick = function(){
+    if(currentGraded) return;
+    doGrade({score:0, hits:[], misses:q.keyPoints.map(function(k){return k.label;}), skipped:true});
+  };
+
+  wrap.appendChild(body);
+  $quizArea.innerHTML = "";
+  $quizArea.appendChild(wrap);
+}
+
+function renderResult(q, g){
+  var box = document.createElement("div");
+  box.className = "result";
+
+  var scoreRow = document.createElement("div");
+  scoreRow.className = "score-row";
+  var badge = document.createElement("div");
+  badge.className = "score-badge " + scoreClass(g.score);
+  badge.textContent = g.skipped ? "건너뜀" : (g.score + "점");
+  var note = document.createElement("div");
+  note.className = "score-note";
+  note.textContent = g.skipped ? "모범답안과 해설을 바로 확인해보세요." : scoreNote(g.score);
+  scoreRow.appendChild(badge);
+  scoreRow.appendChild(note);
+  box.appendChild(scoreRow);
+
+  var kpGrid = document.createElement("div");
+  kpGrid.className = "kp-grid";
+  q.keyPoints.forEach(function(kp){
+    var hit = g.hits.indexOf(kp.label) !== -1;
+    var row = document.createElement("div");
+    row.className = "kp " + (hit ? "hit":"miss");
+    row.innerHTML = '<span class="mark">'+(hit?"✓":"✗")+'</span><span>'+kp.label+'</span>';
+    kpGrid.appendChild(row);
+  });
+  box.appendChild(kpGrid);
+
+  var atitle = document.createElement("p");
+  atitle.className = "block-title";
+  atitle.textContent = "모범답안";
+  box.appendChild(atitle);
+  var abox = document.createElement("div");
+  abox.className = "answer-box";
+  abox.textContent = q.answer;
+  box.appendChild(abox);
+
+  var etitle = document.createElement("p");
+  etitle.className = "block-title";
+  etitle.textContent = "상세 해설";
+  box.appendChild(etitle);
+  var ebox = document.createElement("div");
+  ebox.className = "explain-box";
+  ebox.innerHTML = q.explain;
+  box.appendChild(ebox);
+
+  var nextRow = document.createElement("div");
+  nextRow.className = "next-row";
+  var nextBtn = document.createElement("button");
+  nextBtn.className = "secondary";
+  nextBtn.textContent = "다음 문제 →";
+  nextBtn.onclick = function(){ qIndex++; renderQuestionView(); };
+  nextRow.appendChild(nextBtn);
+  box.appendChild(nextRow);
+
+  return box;
+}
+
+$resetBtn.onclick = function(){
+  state.history = {};
+  saveState();
+  renderStats();
+  renderQuestionView();
+};
+
+/* ============================= 초기화 ============================= */
+loadState();
+buildQueue();
+renderChips();
+renderModeToggle();
+renderStats();
+renderQuestionView();
+
+})();
+</script>
+
+<!-- ====== 광고 삽입 위치 2 (페이지 맨 아래, 저작권/개인정보처리방침 위) ====== -->
+
+<p style="max-width:840px;margin:24px auto 0;padding:0 20px;font-size:12px;color:var(--ink-faint);font-family:'IBM Plex Sans KR',sans-serif;">
+  <a href="privacy.html" style="color:inherit;">개인정보처리방침</a>
+</p>
+
+</body>
+</html>
