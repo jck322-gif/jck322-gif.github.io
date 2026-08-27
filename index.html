@@ -11388,10 +11388,23 @@ var SUBJECTS = ["전체","안전관리론","인간공학·시스템안전","기�
 
 /* ============================= 모의고사 ============================= */
 var MOCK_PRESETS = {
-  real: {
-    key:"real", label:"실전형", subLabel:"필답형 13 + 작업형 9 = 22문제",
+  both: {
+    key:"both", label:"통합 모의고사", subLabel:"필답형 13 + 작업형 9 = 22문제",
     writtenCount:13, workCount:9, writtenMin:90, workMin:60,
-    note:"응시자 후기에서 확인되는 평균 출제 문항 수(필답형 약 13문제·작업형 약 9문제)에 맞춘 풀 사이즈 모의고사입니다."
+    writtenScale:55, workScale:45,
+    note:"실제 시험처럼 필답형과 작업형을 이어서 한 번에 응시합니다. 응시자 후기에서 확인되는 평균 출제 문항 수(필답형 약 13문제·작업형 약 9문제)에 맞춘 풀 사이즈이며, 필답형 55점+작업형 45점을 합산해 60점 이상이면 합격선입니다."
+  },
+  written: {
+    key:"written", label:"필답형만", subLabel:"필답형 13문제",
+    writtenCount:13, workCount:0, writtenMin:90, workMin:0,
+    writtenScale:100, workScale:0,
+    note:"필답형만 따로 모아 90분 기준으로 응시합니다. 실제 시험은 필답형·작업형을 각각 별도로 응시하는 경우가 많아, 필답형만 집중 연습하고 싶을 때 사용하세요. 100점 만점으로 환산해 60점 이상이면 합격선입니다."
+  },
+  work: {
+    key:"work", label:"작업형만", subLabel:"작업형 9문제",
+    writtenCount:0, workCount:9, writtenMin:0, workMin:60,
+    writtenScale:0, workScale:100,
+    note:"작업형(현장 사진·영상형)만 따로 모아 60분 기준으로 응시합니다. 100점 만점으로 환산해 60점 이상이면 합격선입니다."
   }
 };
 var mockState = null;
@@ -11438,12 +11451,17 @@ function formatDateLabel(d){
   return (d.getMonth()+1)+"월"+d.getDate()+"일 "+pad2(d.getHours())+":"+pad2(d.getMinutes());
 }
 
-function startMockExam(){
-  var preset = MOCK_PRESETS.real;
-  var writtenItems = proportionalPick(QUESTIONS, SUBJECTS.slice(1), preset.writtenCount).map(function(q){ return {q:q, section:"written"}; });
-  var workItems = proportionalPick(WORK_QUESTIONS, WORK_SUBJECTS.slice(1), preset.workCount).map(function(q){ return {q:q, section:"work"}; });
+function startMockExam(modeKey){
+  var preset = MOCK_PRESETS[modeKey] || MOCK_PRESETS.both;
+  var writtenItems = preset.writtenCount>0
+    ? proportionalPick(QUESTIONS, SUBJECTS.slice(1), preset.writtenCount).map(function(q){ return {q:q, section:"written"}; })
+    : [];
+  var workItems = preset.workCount>0
+    ? proportionalPick(WORK_QUESTIONS, WORK_SUBJECTS.slice(1), preset.workCount).map(function(q){ return {q:q, section:"work"}; })
+    : [];
   mockState = {
     type: "exam",
+    mode: preset.key,
     preset: preset,
     items: writtenItems.concat(workItems),
     index: 0,
@@ -11463,14 +11481,19 @@ function startReviewSession(attempt){
   var workWrong = attempt.wrongItems.filter(function(w){ return w.section==="work"; })
     .map(function(w){ return findQuestionById(w.id, "work"); }).filter(Boolean);
   if(writtenWrong.length + workWrong.length === 0) return;
+  var mode = workWrong.length===0 ? "written" : (writtenWrong.length===0 ? "work" : "both");
+  var basePreset = MOCK_PRESETS[mode];
   var preset = {
+    key: mode,
     writtenCount: writtenWrong.length, workCount: workWrong.length,
-    writtenMin: MOCK_PRESETS.real.writtenMin, workMin: MOCK_PRESETS.real.workMin
+    writtenMin: basePreset.writtenMin, workMin: basePreset.workMin,
+    writtenScale: basePreset.writtenScale, workScale: basePreset.workScale
   };
   var items = shuffle(writtenWrong).map(function(q){ return {q:q, section:"written"}; })
     .concat(shuffle(workWrong).map(function(q){ return {q:q, section:"work"}; }));
   mockState = {
     type: "review",
+    mode: mode,
     preset: preset,
     items: items,
     index: 0,
@@ -11527,7 +11550,6 @@ function renderMockArea(){
 
 function renderMockSetup(){
   clearMockTimer();
-  var preset = MOCK_PRESETS.real;
   var wrap = document.createElement("div");
   wrap.className = "qcard";
   var stripe = document.createElement("div"); stripe.className = "stripe"; wrap.appendChild(stripe);
@@ -11540,20 +11562,31 @@ function renderMockSetup(){
   body.appendChild(title);
 
   var desc = document.createElement("p");
-  desc.style.cssText = "font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin:0 0 10px;";
-  desc.innerHTML = "필답형과 작업형을 이어서 한 번에 응시하고, 실제 시험처럼 <b>필답형 55점 + 작업형 45점 = 100점 만점</b>으로 환산해 60점 합격선을 넘는지 확인합니다. "+preset.subLabel+"로 과목 비율에 맞춰 매번 무작위로 새로 뽑힙니다.";
+  desc.style.cssText = "font-size:13.5px;color:var(--ink-soft);line-height:1.7;margin:0 0 14px;";
+  desc.innerHTML = "실제 시험은 <b>필답형(주관식·90분)</b>과 <b>작업형(현장 사진·영상형·60분)</b>을 각각 따로 치르는 경우가 많습니다. 아래에서 통합으로 이어서 볼지, 한 유형만 집중해서 볼지 골라 시작하세요.";
   body.appendChild(desc);
 
-  var timeNote = document.createElement("p");
-  timeNote.style.cssText = "font-size:12px;color:var(--ink-faint);margin:0 0 20px;";
-  timeNote.textContent = "실제 시험 기준 시간(필답형 "+preset.writtenMin+"분 / 작업형 "+preset.workMin+"분)을 화면에 참고용 타이머로 표시합니다. 시간이 지나도 계속 풀 수 있어요.";
-  body.appendChild(timeNote);
-
-  var startBtn = document.createElement("button");
-  startBtn.className = "primary";
-  startBtn.textContent = "모의고사 시작";
-  startBtn.onclick = function(){ startMockExam(); };
-  body.appendChild(startBtn);
+  var grid = document.createElement("div");
+  grid.className = "preset-grid";
+  grid.style.gridTemplateColumns = "repeat(auto-fit, minmax(150px, 1fr))";
+  ["both","written","work"].forEach(function(modeKey){
+    var preset = MOCK_PRESETS[modeKey];
+    var card = document.createElement("div");
+    card.className = "preset-card";
+    var h4 = document.createElement("h4");
+    h4.textContent = preset.label;
+    var p1 = document.createElement("p");
+    p1.textContent = preset.subLabel;
+    var p2 = document.createElement("p");
+    p2.className = "preset-note";
+    p2.textContent = preset.note;
+    card.appendChild(h4);
+    card.appendChild(p1);
+    card.appendChild(p2);
+    card.onclick = function(){ startMockExam(modeKey); };
+    grid.appendChild(card);
+  });
+  body.appendChild(grid);
 
   if(state.mockHistory && state.mockHistory.length){
     var histTitle = document.createElement("p");
@@ -11567,9 +11600,10 @@ function renderMockSetup(){
     state.mockHistory.forEach(function(h){
       var row = document.createElement("div");
       row.className = "mock-history-item";
+      var modeLabel = MOCK_PRESETS[h.mode || "both"] ? MOCK_PRESETS[h.mode || "both"].label : "통합 모의고사";
       var left = document.createElement("span");
       left.className = "mh-label";
-      left.textContent = h.dateLabel + " · " + (h.type==="review" ? "오답 복습" : "실전 모의고사");
+      left.textContent = h.dateLabel + " · " + (h.type==="review" ? (modeLabel+" 오답 복습") : modeLabel);
       var scoreTag = document.createElement("span");
       scoreTag.className = "tag " + (h.pass ? "pass" : "fail");
       scoreTag.textContent = (h.pass ? "합격" : "불합격") + " " + h.total.toFixed(1) + "점";
@@ -11702,14 +11736,16 @@ function renderMockQuestion(){
 function renderMockResult(){
   clearMockTimer();
   var results = mockState.results;
+  var preset = mockState.preset;
+  var mode = mockState.mode || "both";
   function sectionScore(section, scale){
     var subset = results.filter(function(r){ return r.section===section; });
     var totalPts = subset.reduce(function(a,r){ return a+r.points; }, 0);
     var earnedPts = subset.reduce(function(a,r){ return a + r.points*(r.score/100); }, 0);
     return totalPts>0 ? (earnedPts/totalPts)*scale : 0;
   }
-  var writtenScore = sectionScore("written", 55);
-  var workScore = sectionScore("work", 45);
+  var writtenScore = sectionScore("written", preset.writtenScale);
+  var workScore = sectionScore("work", preset.workScale);
   var total = writtenScore + workScore;
   var pass = total >= 60;
 
@@ -11718,6 +11754,7 @@ function renderMockResult(){
       ts: Date.now(),
       dateLabel: formatDateLabel(new Date()),
       type: mockState.type,
+      mode: mode,
       total: total,
       writtenScore: writtenScore,
       workScore: workScore,
@@ -11743,16 +11780,22 @@ function renderMockResult(){
   badge.textContent = (pass ? "합격 예상" : "불합격 예상") + " · " + total.toFixed(1) + "점";
   var note = document.createElement("div");
   note.className = "score-note";
-  note.textContent = "100점 만점 중 60점 이상이면 합격선입니다 (필답형+작업형 합산, 과목별 최저점 기준 없음).";
+  var noteBySection = mode==="both" ? "필답형+작업형 합산, 과목별 최저점 기준 없음" : (mode==="written" ? "필답형만 100점으로 환산" : "작업형만 100점으로 환산");
+  note.textContent = "100점 만점 중 60점 이상이면 합격선입니다 ("+noteBySection+").";
   badgeRow.appendChild(badge);
   badgeRow.appendChild(note);
   body.appendChild(badgeRow);
 
   var subRow = document.createElement("div");
   subRow.className = "mock-sub-scores";
-  subRow.innerHTML =
-    '<div class="mock-sub-score"><div class="num">'+writtenScore.toFixed(1)+' / 55</div><div class="label">필답형 ('+results.filter(function(r){return r.section==="written";}).length+'문제)</div></div>'+
-    '<div class="mock-sub-score"><div class="num">'+workScore.toFixed(1)+' / 45</div><div class="label">작업형 ('+results.filter(function(r){return r.section==="work";}).length+'문제)</div></div>';
+  var subHtml = "";
+  if(preset.writtenScale > 0){
+    subHtml += '<div class="mock-sub-score"><div class="num">'+writtenScore.toFixed(1)+' / '+preset.writtenScale+'</div><div class="label">필답형 ('+results.filter(function(r){return r.section==="written";}).length+'문제)</div></div>';
+  }
+  if(preset.workScale > 0){
+    subHtml += '<div class="mock-sub-score"><div class="num">'+workScore.toFixed(1)+' / '+preset.workScale+'</div><div class="label">작업형 ('+results.filter(function(r){return r.section==="work";}).length+'문제)</div></div>';
+  }
+  subRow.innerHTML = subHtml;
   body.appendChild(subRow);
 
   var listTitle = document.createElement("p");
@@ -12252,7 +12295,7 @@ function renderPoolTabs(){
   var tabs = [
     {key:"written", title:"필답형", desc:"서술형 답안 작성"},
     {key:"work", title:"작업형", desc:"현장 그림 보고 위험요인·대책 쓰기"},
-    {key:"mock", title:"모의고사", desc:"필답형+작업형 통합 실전 테스트"}
+    {key:"mock", title:"모의고사", desc:"필답형·작업형 각각 또는 통합 실전 테스트"}
   ];
   tabs.forEach(function(t){
     var b = document.createElement("button");
