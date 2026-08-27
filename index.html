@@ -135,7 +135,7 @@
   }
 
   /* ---------- header ---------- */
-  header{ margin-bottom:28px; }
+  header{ margin-bottom:18px; }
   .title-row{
     display:flex;
     justify-content:space-between;
@@ -164,7 +164,7 @@
     font-weight:900;
     font-size:clamp(28px,5vw,38px);
     letter-spacing:-0.01em;
-    margin:14px 0 8px;
+    margin:10px 0 6px;
     text-wrap:balance;
   }
   header p.sub{
@@ -174,11 +174,11 @@
     max-width:64ch;
   }
   .disclaimer{
-    margin-top:14px;
+    margin-top:8px;
     font-size:12.5px;
     color:var(--ink-faint);
     border-left:3px solid var(--border);
-    padding:6px 0 6px 12px;
+    padding:5px 0 5px 12px;
     max-width:64ch;
   }
 
@@ -213,7 +213,7 @@
   .pool-tabs{
     display:flex;
     gap:10px;
-    margin-bottom:22px;
+    margin-bottom:16px;
   }
   .pool-tab{
     flex:1;
@@ -338,8 +338,8 @@
     align-items:center;
     gap:12px;
     flex-wrap:wrap;
-    margin:6px 0 22px;
-    padding-bottom:16px;
+    margin:4px 0 14px;
+    padding-bottom:12px;
     border-bottom:1px solid var(--border);
   }
   .round-filter-section{
@@ -786,8 +786,8 @@
         <div class="vb-row"><span>누적 방문자</span><b id="vbTotal">–</b></div>
       </div>
     </div>
-    <p class="sub">서술형 문제를 풀고 제출하면 핵심 키워드 채점과 모범답안, 상세 해설까지 바로 확인할 수 있는 연습 도구입니다. 현장 위험 상황을 보고 위험요인과 안전대책을 쓰는 연습, 그리고 연도·회차별 실제 기출문제를 그대로 풀어보는 연습을 필답형·작업형 모두에서 제공합니다.</p>
-    <p class="disclaimer">회차 선택으로 응시하는 문제는 실제 기출문제를 최대한 원문에 가깝게 옮긴 것이며, 그 외 일반 문제은행은 산업안전보건법령·KOSHA 기준과 매년 반복 출제되는 대표 유형을 바탕으로 원문과 유사하게 재구성한 연습문제입니다(작업형 중 삽화가 있는 문제는 실제 사고 사진이 아닌 AI로 생성한 가상의 예시 그림입니다). 채점은 핵심 키워드·수치 일치 여부를 확인하는 자동 채점이며, 표현이 달라도 의미가 통하는지 애매한 경우엔 직접 대화창에 답안을 붙여넣어 자유롭게 피드백을 받아보세요.</p>
+    <p class="sub">서술형 답안을 자동 채점하고 모범답안·해설을 바로 보여주는 연습 도구예요. 연도·회차별 실제 기출문제도 그대로 풀어볼 수 있어요.</p>
+    <p class="disclaimer">회차 선택 문제는 실제 기출문제를 원문에 가깝게 옮겼고, 그 외 문제는 법령·KOSHA 기준으로 재구성한 연습문제예요(작업형 삽화는 AI로 만든 예시 이미지). 채점은 핵심 키워드 자동 채점이며, 애매하면 대화창에 답안을 붙여넣어 피드백받아보세요.</p>
   </header>
 
   <div class="pool-tabs" id="poolTabs"></div>
@@ -12911,6 +12911,7 @@ function switchPool(key){
   state.filter = "전체";
   state.round = "전체";
   roundQuiz = null;
+  roundPickerOpen = false;
   var chipsEl = document.getElementById("subjectChips");
   var toolbarEl = document.querySelector(".toolbar-row");
   if(key === "mock"){
@@ -12978,6 +12979,7 @@ function updateRoundCount(){
 }
 
 var roundQuiz = null; /* {round, items:[q,...], index, results:[], status:'running'|'done', recorded, isReview} */
+var roundPickerOpen = false; /* 회차 선택 카드 목록을 펼쳤는지 여부(기본은 접힘) */
 
 function selectRound(round){
   if(round === "전체"){ exitRoundQuiz(); return; }
@@ -13020,6 +13022,7 @@ function exitRoundQuiz(){
   roundQuiz = null;
   state.round = "전체";
   roundPage = 0;
+  roundPickerOpen = true;
   setBrowseControlsVisible(true);
   buildQueue();
   renderRoundFilter();
@@ -13071,18 +13074,29 @@ function renderRoundFilter(){
   $roundRow.style.display = "";
 
   var quizActive = !!roundQuiz;
-  $roundCardGrid.style.display = quizActive ? "none" : "";
-  $roundPagination.style.display = quizActive ? "none" : "";
+  var showList = quizActive ? false : roundPickerOpen;
+  $roundCardGrid.style.display = showList ? "" : "none";
+  $roundPagination.style.display = showList ? "" : "none";
   var $histArea = document.getElementById("roundHistoryArea");
-  if($histArea) $histArea.style.display = quizActive ? "none" : "";
+  if($histArea) $histArea.style.display = showList ? "" : "none";
 
   if($roundAllBtn){
-    $roundAllBtn.textContent = quizActive ? "회차 목록으로" : "전체 회차 보기";
-    $roundAllBtn.className = "round-all-btn" + (!quizActive && state.round==="전체" ? " active" : "");
-    $roundAllBtn.onclick = function(){ exitRoundQuiz(); };
+    if(quizActive){
+      $roundAllBtn.textContent = "회차 목록으로";
+    } else if(roundPickerOpen){
+      $roundAllBtn.textContent = "접기";
+    } else {
+      $roundAllBtn.textContent = "회차 선택 열기";
+    }
+    $roundAllBtn.className = "round-all-btn" + (!quizActive && roundPickerOpen ? " active" : "");
+    $roundAllBtn.onclick = function(){
+      if(quizActive){ exitRoundQuiz(); }
+      else { roundPickerOpen = !roundPickerOpen; renderRoundFilter(); }
+    };
   }
 
   if(quizActive){ updateRoundCount(); return; }
+  if(!showList){ updateRoundCount(); return; }
 
   var rounds = availableRounds();
   if(rounds.every(function(r){ return r.round!==state.round; })) state.round = "전체";
