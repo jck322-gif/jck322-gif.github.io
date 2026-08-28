@@ -212,11 +212,12 @@
   /* ---------- pool tabs ---------- */
   .pool-tabs{
     display:flex;
+    flex-wrap:wrap;
     gap:10px;
     margin-bottom:16px;
   }
   .pool-tab{
-    flex:1;
+    flex:1 1 130px;
     font-family:'Gothic A1', sans-serif;
     font-weight:800;
     font-size:14.5px;
@@ -342,6 +343,11 @@
     padding-bottom:12px;
     border-bottom:1px solid var(--border);
   }
+  .round-toggle-row{
+    display:flex;
+    justify-content:flex-start;
+    margin:-4px 0 14px;
+  }
   .round-filter-section{
     margin:0 0 18px;
   }
@@ -369,6 +375,11 @@
     background:var(--accent-soft);
     border-radius:999px;
     padding:2px 9px;
+  }
+  .round-mode-label{
+    font-size:12px;
+    font-weight:600;
+    color:var(--ink-soft);
   }
   .round-all-btn{
     font-family:'IBM Plex Sans KR', sans-serif;
@@ -714,6 +725,45 @@
 
   .next-row{ margin-top:20px; display:flex; justify-content:flex-end; }
 
+  /* ---------- 학습 모드 (문제+답안 나란히 보기) ---------- */
+  .study-columns{
+    display:flex;
+    gap:20px;
+    align-items:flex-start;
+  }
+  .study-col{ flex:1 1 0; min-width:0; }
+  .study-col textarea{ min-height:260px; }
+  .study-reveal-outer{ position:relative; }
+  .study-reveal.blurred{
+    filter:blur(7px);
+    user-select:none;
+    pointer-events:none;
+  }
+  .study-reveal-btn{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    background:var(--surface-2);
+    border:1px dashed var(--ink-faint);
+    border-radius:8px;
+    font-family:'Gothic A1', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    color:var(--ink);
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:16px;
+  }
+  .study-reveal-btn:hover{ border-color:var(--ink-soft); }
+  @media (max-width:760px){
+    .study-columns{ flex-direction:column; }
+    .study-col textarea{ min-height:160px; }
+  }
+
   /* ---------- wrong-note list ---------- */
   .wn-list{ display:flex; flex-direction:column; gap:8px; }
   .wn-item{
@@ -794,11 +844,11 @@
 
   <div class="controls" id="subjectChips"></div>
 
+  <div class="round-toggle-row" id="roundToggleRow">
+    <button type="button" class="round-all-btn" id="roundAllBtn">전체 회차 보기</button>
+  </div>
+
   <div class="round-filter-section" id="roundFilterRow">
-    <div class="round-filter-head">
-      <span class="round-filter-title">회차 선택 <span id="roundFilterCountBadge" class="round-count-badge"></span></span>
-      <button type="button" class="round-all-btn" id="roundAllBtn">전체 회차 보기</button>
-    </div>
     <div class="round-card-grid" id="roundCardGrid"></div>
     <div class="round-pagination" id="roundPagination"></div>
     <div class="round-history" id="roundHistoryArea"></div>
@@ -12557,7 +12607,7 @@ function renderMockSetup(){
   var title = document.createElement("div");
   title.className = "qtext";
   title.style.marginBottom = "6px";
-  title.textContent = "실전 모의고사";
+  title.textContent = "실전모드 (필답형+작업형 실전테스트)";
   body.appendChild(title);
 
   var desc = document.createElement("p");
@@ -12884,10 +12934,12 @@ function grade(q, rawAnswer){
 var $poolTabs = document.getElementById("poolTabs");
 var $chips = document.getElementById("subjectChips");
 var $roundRow = document.getElementById("roundFilterRow");
+var $roundToggleRow = document.getElementById("roundToggleRow");
 var $roundCardGrid = document.getElementById("roundCardGrid");
 var $roundPagination = document.getElementById("roundPagination");
 var $roundAllBtn = document.getElementById("roundAllBtn");
 var $roundCountBadge = document.getElementById("roundFilterCountBadge");
+var $roundModeLabel = document.getElementById("roundFilterModeLabel");
 var roundPage = 0;
 var ROUNDS_PER_PAGE = 12;
 var $modeToggle = document.getElementById("modeToggle");
@@ -12919,6 +12971,7 @@ function switchPool(key){
     if(chipsEl) chipsEl.style.display = "none";
     if(toolbarEl) toolbarEl.style.display = "none";
     if($roundRow) $roundRow.style.display = "none";
+    if($roundToggleRow) $roundToggleRow.style.display = "none";
     renderPoolTabs();
     renderStats();
     renderMockArea();
@@ -12944,6 +12997,14 @@ function extractRoundsFromTag(tag){
 function roundLabel(round){
   var parts = round.split("-");
   return parts[0]+"년 "+parts[1]+"회차"+(parts[2] ? " "+parts[2] : "");
+}
+
+function poolModeLabel(pool){
+  if(pool === "study") return "해설모드";
+  if(pool === "written") return "풀이모드 (필답형)";
+  if(pool === "work") return "풀이모드 (작업형)";
+  if(pool === "mock") return "실전모드 (필답형+작업형 실전테스트)";
+  return "";
 }
 
 function availableRounds(){
@@ -12982,8 +13043,11 @@ var roundQuiz = null; /* {round, items:[q,...], index, results:[], status:'runni
 var roundPickerOpen = false; /* 회차 선택 카드 목록을 펼쳤는지 여부(기본은 접힘) */
 
 function selectRound(round){
-  if(round === "전체"){ exitRoundQuiz(); return; }
-  startRoundQuiz(round);
+  if(round === "전체"){
+    if(state.pool === "study"){ exitStudyRound(); } else { exitRoundQuiz(); }
+    return;
+  }
+  if(state.pool === "study"){ startStudyRound(round); } else { startRoundQuiz(round); }
 }
 
 function setBrowseControlsVisible(visible){
@@ -13020,6 +13084,24 @@ function reviewRoundWrong(attempt){
 
 function exitRoundQuiz(){
   roundQuiz = null;
+  state.round = "전체";
+  roundPage = 0;
+  roundPickerOpen = true;
+  setBrowseControlsVisible(true);
+  buildQueue();
+  renderRoundFilter();
+  renderQuestionView();
+}
+
+function startStudyRound(round){
+  state.round = round;
+  setBrowseControlsVisible(false);
+  buildQueue();
+  renderRoundFilter();
+  renderQuestionView();
+}
+
+function exitStudyRound(){
   state.round = "전체";
   roundPage = 0;
   roundPickerOpen = true;
@@ -13067,13 +13149,20 @@ function renderRoundHistory(){
 
 function renderRoundFilter(){
   if(!$roundRow || !$roundCardGrid) return;
-  if(state.pool !== "written" && state.pool !== "work"){
+  if(state.pool !== "written" && state.pool !== "work" && state.pool !== "study"){
     $roundRow.style.display = "none";
+    if($roundToggleRow) $roundToggleRow.style.display = "none";
     return;
   }
   $roundRow.style.display = "";
+  if($roundToggleRow) $roundToggleRow.style.display = "";
+  if($roundModeLabel){
+    var modeLabel = poolModeLabel(state.pool);
+    $roundModeLabel.textContent = modeLabel ? (" · "+modeLabel) : "";
+  }
 
-  var quizActive = !!roundQuiz;
+  var studyRoundActive = state.pool === "study" && state.round !== "전체";
+  var quizActive = !!roundQuiz || studyRoundActive;
   var showList = quizActive ? false : roundPickerOpen;
   $roundCardGrid.style.display = showList ? "" : "none";
   $roundPagination.style.display = showList ? "" : "none";
@@ -13090,7 +13179,8 @@ function renderRoundFilter(){
     }
     $roundAllBtn.className = "round-all-btn" + (!quizActive && roundPickerOpen ? " active" : "");
     $roundAllBtn.onclick = function(){
-      if(quizActive){ exitRoundQuiz(); }
+      if(roundQuiz){ exitRoundQuiz(); }
+      else if(studyRoundActive){ exitStudyRound(); }
       else { roundPickerOpen = !roundPickerOpen; renderRoundFilter(); }
     };
   }
@@ -13322,9 +13412,10 @@ function renderRoundQuizResult(){
 function renderPoolTabs(){
   $poolTabs.innerHTML = "";
   var tabs = [
-    {key:"written", title:"필답형", desc:"서술형 답안 작성"},
-    {key:"work", title:"작업형", desc:"현장 상황 대응 + 회차별 기출문제"},
-    {key:"mock", title:"모의고사", desc:"필답형·작업형 각각 또는 통합 실전 테스트"}
+    {key:"study", title:"해설모드", desc:"문제 + 해설, 작성 연습"},
+    {key:"written", title:"풀이모드 (필답형)", desc:"서술형 답안 작성"},
+    {key:"work", title:"풀이모드 (작업형)", desc:"현장 상황 대응 작성"},
+    {key:"mock", title:"실전모드", desc:"필답형+작업형 실전테스트"}
   ];
   tabs.forEach(function(t){
     var b = document.createElement("button");
@@ -13370,7 +13461,7 @@ function buildQueue(){
   var pool = activeQuestions().filter(function(q){
     if(state.filter!=="전체" && q.subject!==state.filter) return false;
     if(state.wrongOnly && !isWrong(q.id)) return false;
-    if((state.pool==="written"||state.pool==="work") && state.round!=="전체" && q.roundExam!==state.round) return false;
+    if((state.pool==="written"||state.pool==="work"||state.pool==="study") && state.round!=="전체" && q.roundExam!==state.round) return false;
     return true;
   });
   queue = state.mode==="rand" ? shuffle(pool) : pool;
@@ -13408,6 +13499,7 @@ function scoreNote(score){
 }
 
 function renderQuestionView(){
+  if(state.pool === "study"){ renderStudyView(); return; }
   currentGraded = false;
   if(queue.length===0){
     var emptyMsg = state.wrongOnly
@@ -13493,6 +13585,146 @@ function renderQuestionView(){
     if(currentGraded) return;
     doGrade({score:0, hits:[], misses:q.keyPoints.map(function(k){return k.label;}), skipped:true});
   };
+
+  wrap.appendChild(body);
+  $quizArea.innerHTML = "";
+  $quizArea.appendChild(wrap);
+}
+
+function renderStudyView(){
+  if(queue.length===0){
+    var emptyMsg = state.wrongOnly
+      ? "이 조건에서는 아직 오답노트에 담긴 문제가 없습니다. 문제를 풀다 보면 여기 자동으로 쌓여요."
+      : "해당 조건에 맞는 문제가 없습니다.";
+    $quizArea.innerHTML = '<div class="qcard"><div class="qcard-body"><p class="empty">'+emptyMsg+'</p></div></div>';
+    return;
+  }
+  if(qIndex >= queue.length) qIndex = 0;
+  var q = queue[qIndex];
+
+  var wrap = document.createElement("div");
+  wrap.className = "qcard";
+
+  var stripe = document.createElement("div");
+  stripe.className = "stripe";
+  wrap.appendChild(stripe);
+
+  var body = document.createElement("div");
+  body.className = "qcard-body";
+
+  var meta = document.createElement("div");
+  meta.className = "qmeta";
+  meta.innerHTML =
+    '<span class="tag subject">'+q.subject+'</span>'+
+    '<span class="tag progress">'+(qIndex+1)+' / '+queue.length+'</span>'+
+    '<span class="tag points">배점 '+q.points+' 내외</span>'+
+    (q.examTag ? '<span class="tag examtag">'+q.examTag+'</span>' : '');
+  body.appendChild(meta);
+
+  if(q.image){
+    var img = document.createElement("img");
+    img.className = "hazard-img";
+    img.src = q.image;
+    img.alt = "작업형 위험 상황 삽화";
+    img.loading = "lazy";
+    body.appendChild(img);
+  }
+
+  var qtext = document.createElement("div");
+  qtext.className = "qtext";
+  qtext.textContent = q.q;
+  body.appendChild(qtext);
+
+  var cols = document.createElement("div");
+  cols.className = "study-columns";
+
+  var leftCol = document.createElement("div");
+  leftCol.className = "study-col";
+  var leftTitle = document.createElement("p");
+  leftTitle.className = "block-title";
+  leftTitle.textContent = "내 답안 작성";
+  var ta = document.createElement("textarea");
+  ta.placeholder = "여기에 답안을 직접 써보세요 (채점되지 않는 학습용 메모입니다)";
+  leftCol.appendChild(leftTitle);
+  leftCol.appendChild(ta);
+
+  var rightCol = document.createElement("div");
+  rightCol.className = "study-col";
+  var rightTitle = document.createElement("p");
+  rightTitle.className = "block-title";
+  rightTitle.textContent = "모범답안 · 해설";
+
+  var revealOuter = document.createElement("div");
+  revealOuter.className = "study-reveal-outer";
+
+  var revealWrap = document.createElement("div");
+  revealWrap.className = "study-reveal blurred";
+
+  var atitle = document.createElement("p");
+  atitle.className = "block-title";
+  atitle.textContent = "모범답안";
+  var abox = document.createElement("div");
+  abox.className = "answer-box";
+  abox.textContent = q.answer;
+
+  var kptitle = document.createElement("p");
+  kptitle.className = "block-title";
+  kptitle.textContent = "핵심 키워드";
+  var kpGrid = document.createElement("div");
+  kpGrid.className = "kp-grid";
+  (q.keyPoints||[]).forEach(function(kp){
+    var row = document.createElement("div");
+    row.className = "kp hit";
+    row.innerHTML = '<span class="mark">·</span><span>'+kp.label+'</span>';
+    kpGrid.appendChild(row);
+  });
+
+  var etitle = document.createElement("p");
+  etitle.className = "block-title";
+  etitle.textContent = "상세 해설";
+  var ebox = document.createElement("div");
+  ebox.className = "explain-box";
+  ebox.innerHTML = q.explain;
+
+  revealWrap.appendChild(atitle);
+  revealWrap.appendChild(abox);
+  revealWrap.appendChild(kptitle);
+  revealWrap.appendChild(kpGrid);
+  revealWrap.appendChild(etitle);
+  revealWrap.appendChild(ebox);
+
+  var revealBtn = document.createElement("button");
+  revealBtn.type = "button";
+  revealBtn.className = "study-reveal-btn";
+  revealBtn.textContent = "클릭해서 모범답안·해설 보기";
+  revealBtn.onclick = function(){
+    revealWrap.classList.remove("blurred");
+    revealBtn.style.display = "none";
+  };
+
+  revealOuter.appendChild(revealWrap);
+  revealOuter.appendChild(revealBtn);
+  rightCol.appendChild(rightTitle);
+  rightCol.appendChild(revealOuter);
+
+  cols.appendChild(leftCol);
+  cols.appendChild(rightCol);
+  body.appendChild(cols);
+
+  var navRow = document.createElement("div");
+  navRow.className = "actions";
+  var prevBtn = document.createElement("button");
+  prevBtn.className = "text-btn";
+  prevBtn.textContent = "← 이전 문제";
+  prevBtn.disabled = qIndex <= 0;
+  prevBtn.onclick = function(){ if(qIndex>0){ qIndex--; renderStudyView(); } };
+  var nextBtn = document.createElement("button");
+  nextBtn.className = "primary";
+  nextBtn.textContent = "다음 문제 →";
+  nextBtn.onclick = function(){ qIndex++; renderStudyView(); };
+  navRow.appendChild(prevBtn);
+  navRow.appendChild(nextBtn);
+  body.appendChild(navRow);
 
   wrap.appendChild(body);
   $quizArea.innerHTML = "";
